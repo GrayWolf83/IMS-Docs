@@ -1,7 +1,9 @@
 import React from 'react'
+import { ChakraProvider, theme } from '@chakra-ui/react'
+import Pages from './pages'
 
-const App: React.FC = () => {
-	return <h2>App page</h2>
-}
-
-export default App
+export const App: React.FC = () => (
+	<ChakraProvider theme={theme}>
+		<Pages />
+	</ChakraProvider>
+)
