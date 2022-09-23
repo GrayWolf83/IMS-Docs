@@ -5,14 +5,16 @@ import Client from './client'
 import Home from './client/home'
 import Manage from './manage'
 import Position from './manage/position'
+import Book from './client/book'
 
 const Pages: React.FC = () => {
-	const isLogin = false
+	const isLogin = true
 
 	return (
 		<Routes>
 			<Route path='/' element={<Client />}>
 				<Route index element={isLogin ? <Home /> : <Login />} />
+				<Route path='book' element={<Book />} />
 			</Route>
 			<Route path='/manage' element={<Manage />}>
 				<Route index element={<Position />} />

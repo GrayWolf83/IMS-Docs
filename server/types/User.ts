@@ -5,5 +5,5 @@ export interface IUser {
 	department: string
 	phone: string
 	email: string
-	role: 'User' | 'HR' | 'ISM'
+	role: 'User' | 'Manage'
 }

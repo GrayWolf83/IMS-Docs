@@ -22,7 +22,7 @@ class MailService {
 		try {
 			await this.transporter.sendMail({
 				html,
-				from: `eISM ${process.env.MAIL_USER}`,
+				from: `IMS-Docs ${process.env.MAIL_USER}`,
 				to: email,
 				subject,
 			})
