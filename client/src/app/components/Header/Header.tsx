@@ -14,7 +14,7 @@ import ColorModeSwitcher from '../ColorModeSwitcher'
 
 const Header: React.FC = () => {
 	const { colorMode } = useColorMode()
-	const isLogin = true
+	const isLogin = false
 
 	return (
 		<Box
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
 			<Container maxW='container.xl'>
 				<Flex justifyContent='space-between'>
 					<Link to='/'>
-						<Heading>e-IMS</Heading>
+						<Heading>IMS-Docs</Heading>
 					</Link>
 
 					<Flex alignItems='center'>

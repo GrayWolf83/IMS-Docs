@@ -3,12 +3,16 @@ import bcrypt from 'bcryptjs'
 import User from '../../models/User'
 import { IUser } from '../../types/User'
 import tokenService from '../../services/token.service'
+import UserAuth from '../../models/UserAuth'
+import mailService from '../../services/mail.service'
+import { getMailHtml } from '../../utils/getMailHtml'
+const generator = require('generate-password')
 
 const router = express.Router()
 
 router.post('/register', async (req, res) => {
 	try {
-		const { name, email, position, department, phone } = req.body
+		const { name, position, department, phone, email } = req.body
 
 		const existingUser = await User.findOne({ where: { email } })
 		if (existingUser) {
@@ -28,6 +32,26 @@ router.post('/register', async (req, res) => {
 		})
 
 		const newUser: IUser = await User.findOne({ where: { email } })
+
+		const password = generator.generate({
+			length: 10,
+			numbers: true,
+			symbols: true,
+			exclude: '".,:[]{}',
+		})
+
+		const hashedPass = await bcrypt.hash(password, 12)
+
+		await UserAuth.create({
+			user: newUser.id,
+			password: hashedPass,
+		})
+
+		await mailService.sendMail(
+			newUser.email,
+			getMailHtml(newUser.name, password),
+			'Регистрация в системе IMS-Docs',
+		)
 
 		const tokens = tokenService.generate({ id: newUser.id })
 		await tokenService.save(newUser.id, tokens.refreshToken)
@@ -55,7 +79,12 @@ router.post('/login', async (req, res) => {
 				.json({ message: 'Ошибка авторизации', code: 400 })
 		}
 
-		const isValidPassword = await bcrypt.compare(password, user.password)
+		const userAuth = await UserAuth.findOne({ where: { user: user.id } })
+
+		const isValidPassword = await bcrypt.compare(
+			password,
+			userAuth.password,
+		)
 		if (!isValidPassword) {
 			return res
 				.status(400)
@@ -67,11 +96,7 @@ router.post('/login', async (req, res) => {
 
 		res.status(200).send({
 			...tokens,
-			user: {
-				id: user.id,
-				name: user.name,
-				role: user.role,
-			},
+			user,
 		})
 	} catch (error) {
 		res.status(500).json({
@@ -101,15 +126,12 @@ router.post('/token', async (req, res) => {
 		})
 
 		await tokenService.save(data.id, tokens.refreshToken)
+
 		const user = await User.findOne({ where: { id: data.id } })
 
 		res.status(200).send({
 			...tokens,
-			user: {
-				id: user.id,
-				name: user.name,
-				role: user.role,
-			},
+			user,
 		})
 	} catch (e) {
 		res.status(500).json({
