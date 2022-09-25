@@ -1,3 +1,4 @@
+import { IUser } from './../../../../server/types/User'
 import axios from 'axios'
 import httpService from './http.service'
 import localStorageService from './localStorage.service'
@@ -10,30 +11,13 @@ const httpAuth = axios.create({
 })
 
 const authService = {
-	login: async ({ email, password }: { email: string; password: string }) => {
-		const { data } = await httpService.post(endpoint + 'login', {
-			email,
-			password,
-		})
-
+	login: async (payload: { email: string; password: string }) => {
+		const { data } = await httpService.post(endpoint + 'login', payload)
 		return data
 	},
 
-	register: async ({
-		email,
-		password,
-		name,
-	}: {
-		email: string
-		password: string
-		name: string
-	}) => {
-		const { data } = await httpService.post(endpoint + 'signUp', {
-			email,
-			password,
-			name,
-		})
-
+	register: async (payload: IUser) => {
+		const { data } = await httpService.post(endpoint + 'register', payload)
 		return data
 	},
 

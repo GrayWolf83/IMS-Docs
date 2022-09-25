@@ -1,6 +1,6 @@
-const TOKEN_KEY = 'jwt-token'
-const REFRESH_KEY = 'jwt-refresh-token'
-const EXPIRES_KEY = 'jwt-expires'
+const TOKEN_KEY = 'IMS-Docs-jwt-token'
+const REFRESH_KEY = 'IMS-Docs-jwt-refresh-token'
+const EXPIRES_KEY = 'IMS-Docs-jwt-expires'
 
 export function setTokens({
 	refreshToken,
