@@ -1,34 +1,30 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
+import Login from './login'
 import { Provider } from 'react-redux'
-import store from '../../store'
-import HomeMenuList from './HomeMenuList'
+import store from '../../../store'
 
-describe('HomeMenuList component', () => {
-	test('HomeMenuList render', () => {
+describe('Login page', () => {
+	test('Login render', () => {
 		render(
 			<Provider store={store}>
 				<BrowserRouter>
-					<HomeMenuList>
-						<p>test</p>
-					</HomeMenuList>
+					<Login />
 				</BrowserRouter>
 			</Provider>,
 		)
 
-		const homeMenuList = screen.getByTestId('HomeMenuList')
-		expect(homeMenuList).toBeInTheDocument()
+		const login = screen.getByTestId('Login')
+		expect(login).toBeInTheDocument()
 	})
 
-	test('HomeMenuList snapshot', () => {
+	test('Login snapshot', () => {
 		expect(
 			render(
 				<Provider store={store}>
 					<BrowserRouter>
-						<HomeMenuList>
-							<p>test</p>
-						</HomeMenuList>
+						<Login />
 					</BrowserRouter>
 				</Provider>,
 			),

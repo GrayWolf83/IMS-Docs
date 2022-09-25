@@ -36,24 +36,21 @@ const authSlice = createSlice({
 const { authLoginSuccess, authLoadingStart, authLoadingEnd, authLogout } =
 	authSlice.actions
 
-export const login =
-	(data: { email: string; password: string }) =>
-	async (dispatch: AppDispatch) => {
-		dispatch(authLoadingStart())
-		console.log('data', data)
+export const login = (data: FormData) => async (dispatch: AppDispatch) => {
+	dispatch(authLoadingStart())
 
-		try {
-			const payload = await authService.login(data)
-			dispatch(authLoginSuccess(payload.user))
+	try {
+		const payload = await authService.login(data)
+		dispatch(authLoginSuccess(payload.user))
 
-			localStorageService.setTokens({
-				...payload,
-			})
-		} catch (error) {
-		} finally {
-			dispatch(authLoadingEnd())
-		}
+		localStorageService.setTokens({
+			...payload,
+		})
+	} catch (error) {
+	} finally {
+		dispatch(authLoadingEnd())
 	}
+}
 
 export const autologin = () => async (dispatch: AppDispatch) => {
 	dispatch(authLoadingStart())

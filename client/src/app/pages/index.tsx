@@ -4,7 +4,7 @@ import Login from './client/login'
 import Client from './client'
 import Home from './client/home'
 import Manage from './manage'
-import Position from './manage/position'
+import ManageHome from './manage/manage/manage'
 import Book from './client/book'
 import { useAppDispatch, useAppSelector } from '../hooks/useAppReduxHooks'
 import { autologin, getCurrentUser } from '../store/auth'
@@ -19,14 +19,23 @@ const Pages: React.FC = () => {
 
 	return (
 		<Routes>
-			<Route path='/' element={<Client />}>
-				<Route index element={isLogin ? <Home /> : <Login />} />
-				<Route path='book' element={<Book />} />
-			</Route>
-			<Route path='/manage' element={<Manage />}>
-				<Route index element={<Position />} />
-			</Route>
-			<Route path='*' element={<Navigate to='/' />} />
+			{isLogin ? (
+				<>
+					<Route path='/' element={<Client />}>
+						<Route index element={<Home />} />
+						<Route path='book' element={<Book />} />
+					</Route>
+					<Route path='/manage' element={<Manage />}>
+						<Route index element={<ManageHome />} />
+					</Route>
+					<Route path='*' element={<Navigate to='/' />} />
+				</>
+			) : (
+				<>
+					<Route path='/' element={<Login />} />
+					<Route path='*' element={<Navigate to='/' />} />
+				</>
+			)}
 		</Routes>
 	)
 }

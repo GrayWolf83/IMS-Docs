@@ -11,12 +11,12 @@ import {
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 interface IProps {
-	error: string | null
+	error?: string | null
 	label: string
 	name: string
 	type?: string
-	onChange: (value: { [key: string]: string }) => void
-	value: string
+	onChange?: (value: { [key: string]: string }) => void
+	value?: string
 }
 
 const TextField: React.FC<IProps> = ({
@@ -31,7 +31,9 @@ const TextField: React.FC<IProps> = ({
 	const [passVisible, setPassVisible] = React.useState(false)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		onChange({ [e.target.name]: e.target.value })
+		if (onChange) {
+			onChange({ [e.target.name]: e.target.value })
+		}
 	}
 
 	return (

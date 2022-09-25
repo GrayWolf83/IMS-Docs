@@ -11,8 +11,12 @@ const httpAuth = axios.create({
 })
 
 const authService = {
-	login: async (payload: { email: string; password: string }) => {
-		const { data } = await httpService.post(endpoint + 'login', payload)
+	login: async (payload: FormData) => {
+		const { data } = await httpService.post(endpoint + 'login', payload, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		})
 		return data
 	},
 
