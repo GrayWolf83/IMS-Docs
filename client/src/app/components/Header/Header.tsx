@@ -7,14 +7,23 @@ import {
 	useColorMode,
 	IconButton,
 } from '@chakra-ui/react'
-import { FcManager } from 'react-icons/fc'
 import { FiLogOut } from 'react-icons/fi'
-import { Link } from 'react-router-dom'
+import { AiFillSetting } from 'react-icons/ai'
+import { Link, useNavigate } from 'react-router-dom'
 import ColorModeSwitcher from '../ColorModeSwitcher'
+import { useAppDispatch, useAppSelector } from '../../hooks/useAppReduxHooks'
+import {
+	getCurrentUser,
+	getCurrentUserIsManage,
+	logout,
+} from '../../store/auth'
 
 const Header: React.FC = () => {
 	const { colorMode } = useColorMode()
-	const isLogin = false
+	const dispatch = useAppDispatch()
+	const isLogin = useAppSelector(getCurrentUser())
+	const isManage = useAppSelector(getCurrentUserIsManage())
+	const navigate = useNavigate()
 
 	return (
 		<Box
@@ -30,19 +39,23 @@ const Header: React.FC = () => {
 
 					<Flex alignItems='center'>
 						<ColorModeSwitcher />
+						{isManage && (
+							<IconButton
+								size='md'
+								onClick={() => navigate('/manage')}
+								fontSize='lg'
+								variant='outline'
+								color='current'
+								marginLeft='2'
+								aria-label=''
+								icon={<AiFillSetting fontSize='24px' />}
+							/>
+						)}
 						{isLogin && (
 							<>
 								<IconButton
 									size='md'
-									fontSize='lg'
-									variant='outline'
-									color='current'
-									marginLeft='2'
-									aria-label=''
-									icon={<FcManager fontSize='24px' />}
-								/>
-								<IconButton
-									size='md'
+									onClick={() => dispatch(logout())}
 									fontSize='lg'
 									variant='outline'
 									color='current'

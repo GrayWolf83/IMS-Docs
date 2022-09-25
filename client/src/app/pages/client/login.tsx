@@ -1,14 +1,28 @@
 import React from 'react'
 import { Box, Button, useColorMode, Heading, Flex } from '@chakra-ui/react'
 import TextField from '../../components/form/TextField'
+import { useAppDispatch } from '../../hooks/useAppReduxHooks'
+import { login } from '../../store/auth'
 
 const Login: React.FC = () => {
 	const { colorMode } = useColorMode()
-	const [data, setData] = React.useState<{ [key: string]: string | number }>()
+	const [data, setData] = React.useState<{ [key: string]: string }>({})
 	const [error] = React.useState<{ [key: string]: string | null }>()
+	const dispatch = useAppDispatch()
 
-	const handleChange = (value: { [key: string]: string | number }) => {
-		setData(value)
+	const handleChange = (value: { [key: string]: string }) => {
+		setData((prev) => ({ ...prev, ...value }))
+	}
+
+	const handleSubmit = () => {
+		if (
+			data?.email &&
+			data?.password &&
+			typeof data.email === 'string' &&
+			typeof data.password === 'string'
+		) {
+			dispatch(login({ email: data.email, password: data.password }))
+		}
 	}
 
 	return (
@@ -42,7 +56,7 @@ const Login: React.FC = () => {
 				value={data?.password || ''}
 			/>
 			<Flex justifyContent='center'>
-				<Button my='10px' colorScheme='gray'>
+				<Button my='10px' colorScheme='gray' onClick={handleSubmit}>
 					Войти
 				</Button>
 			</Flex>

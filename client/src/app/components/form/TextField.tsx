@@ -16,7 +16,7 @@ interface IProps {
 	name: string
 	type?: string
 	onChange: (value: { [key: string]: string }) => void
-	value: string | number
+	value: string
 }
 
 const TextField: React.FC<IProps> = ({
@@ -49,7 +49,13 @@ const TextField: React.FC<IProps> = ({
 					placeholder='Пароль'
 					onChange={handleChange}
 					value={value}
-					type={passVisible ? 'text' : 'password'}
+					type={
+						type === 'password'
+							? passVisible
+								? 'text'
+								: 'password'
+							: type
+					}
 				/>
 				{type === 'password' && (
 					<IconButton

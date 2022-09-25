@@ -6,9 +6,16 @@ import Home from './client/home'
 import Manage from './manage'
 import Position from './manage/position'
 import Book from './client/book'
+import { useAppDispatch, useAppSelector } from '../hooks/useAppReduxHooks'
+import { autologin, getCurrentUser } from '../store/auth'
 
 const Pages: React.FC = () => {
-	const isLogin = true
+	const dispatch = useAppDispatch()
+	const isLogin = useAppSelector(getCurrentUser())
+
+	React.useEffect(() => {
+		dispatch(autologin())
+	}, [dispatch])
 
 	return (
 		<Routes>

@@ -22,7 +22,7 @@ const HomeMenuItem: React.FC<IHomeMenuItem> = ({ path, name, Icon }) => {
 			color={light}
 			fontSize='32px'
 			shadow='lg'
-			_hover={{ fontSize: '34px' }}
+			_hover={{ fontSize: '34px', opacity: 0.8 }}
 			transition='all 0.2s ease-in-out'
 			justifyContent='center'
 			borderRadius={3}>
