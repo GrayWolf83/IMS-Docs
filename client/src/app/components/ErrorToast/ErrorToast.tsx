@@ -20,7 +20,7 @@ const ErrorToast: React.FC<IErrorToast> = () => {
 			})
 			dispatch(clearErrors())
 		}
-	}, [error])
+	}, [error, dispatch, toast])
 
 	return <div data-testid='ErrorToast'></div>
 }

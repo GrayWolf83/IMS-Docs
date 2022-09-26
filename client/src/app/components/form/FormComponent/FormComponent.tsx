@@ -3,7 +3,8 @@ import React from 'react'
 
 interface IFormComponent {
 	initialData?: { [key: string]: string }
-	onSubmit: (data: FormData) => void
+	onSubmit?: (data: { [key: string]: string | File }) => void
+	onSubmitFile?: (data: FormData) => void
 	btnLabel: string
 	children: React.ReactNode
 	validationShema: any
@@ -12,6 +13,7 @@ interface IFormComponent {
 const FormComponent: React.FC<IFormComponent> = ({
 	initialData,
 	onSubmit,
+	onSubmitFile,
 	btnLabel,
 	children,
 	validationShema,
@@ -56,13 +58,20 @@ const FormComponent: React.FC<IFormComponent> = ({
 		validation()
 		delete error?.undefined
 		if (!Object.keys(error).length && Object.keys(data).length) {
-			const formData = new FormData()
+			if (onSubmitFile) {
+				const formData = new FormData()
 
-			Object.entries(data).forEach((item) => {
-				formData.append(item[0], item[1])
-			})
+				Object.entries(data).forEach((item) => {
+					formData.append(item[0], item[1])
+				})
 
-			onSubmit(formData)
+				onSubmitFile(formData)
+			}
+
+			if (onSubmit) {
+				onSubmit(data)
+			}
+
 			setData({})
 		} else {
 			toast({

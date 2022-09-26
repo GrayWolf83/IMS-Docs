@@ -12,8 +12,15 @@ interface ILogin {}
 const Login: React.FC<ILogin> = () => {
 	const dispatch = useAppDispatch()
 
-	const handleSubmit = (data: FormData) => {
-		dispatch(login(data))
+	const handleSubmit = (data: { [key: string]: string | File }) => {
+		if (data?.email && data?.password) {
+			dispatch(
+				login({
+					email: String(data.email),
+					password: String(data.password),
+				}),
+			)
+		}
 	}
 
 	return (
