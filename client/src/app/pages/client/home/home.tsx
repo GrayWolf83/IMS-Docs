@@ -1,26 +1,22 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
-import HomeMenuList from '../../../components/HomeMenuList'
 import { FaListAlt } from 'react-icons/fa'
 import { GiRead } from 'react-icons/gi'
 import { CgListTree } from 'react-icons/cg'
-import HomeMenuItem from '../../../components/HomeMenuItem'
+import AppMenuList from '../../../components/AppMenuList'
+import AppMenuItem from '../../../components/AppMenuItem'
 
 interface IHome {}
 
 const Home: React.FC<IHome> = () => {
 	return (
 		<Box data-testid='Home' mt={3}>
-			<HomeMenuList>
-				<HomeMenuItem path='/book' name='Справочник' Icon={FaListAlt} />
-				<HomeMenuItem
-					path='/testing'
-					name='Ознакомление'
-					Icon={GiRead}
-				/>
-				<HomeMenuItem path='/system' name='ИСМ' Icon={CgListTree} />
-				<HomeMenuItem path='/system' name='СУБ' Icon={CgListTree} />
-			</HomeMenuList>
+			<AppMenuList>
+				<AppMenuItem path='/book' name='Справочник' Icon={FaListAlt} />
+				<AppMenuItem path='/test' name='Ознакомление' Icon={GiRead} />
+				<AppMenuItem path='/system' name='ИСМ' Icon={CgListTree} />
+				<AppMenuItem path='/system' name='СУБ' Icon={CgListTree} />
+			</AppMenuList>
 		</Box>
 	)
 }

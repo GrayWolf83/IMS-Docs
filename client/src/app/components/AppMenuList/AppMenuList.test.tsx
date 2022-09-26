@@ -3,32 +3,32 @@ import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '../../store'
-import HomeMenuList from './HomeMenuList'
+import AppMenuList from './AppMenuList'
 
-describe('HomeMenuList component', () => {
-	test('HomeMenuList render', () => {
+describe('AppMenuList component', () => {
+	test('AppMenuList render', () => {
 		render(
 			<Provider store={store}>
 				<BrowserRouter>
-					<HomeMenuList>
-						<p>test</p>
-					</HomeMenuList>
+					<AppMenuList>
+						<p>Test</p>
+					</AppMenuList>
 				</BrowserRouter>
 			</Provider>,
 		)
 
-		const homeMenuList = screen.getByTestId('HomeMenuList')
-		expect(homeMenuList).toBeInTheDocument()
+		const appMenuList = screen.getByTestId('AppMenuList')
+		expect(appMenuList).toBeInTheDocument()
 	})
 
-	test('HomeMenuList snapshot', () => {
+	test('AppMenuList snapshot', () => {
 		expect(
 			render(
 				<Provider store={store}>
 					<BrowserRouter>
-						<HomeMenuList>
-							<p>test</p>
-						</HomeMenuList>
+						<AppMenuList>
+							<p>Test</p>
+						</AppMenuList>
 					</BrowserRouter>
 				</Provider>,
 			),

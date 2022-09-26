@@ -1,3 +1,4 @@
+import { setLoadingError } from './error'
 import { IUser } from './../../../../server/types/User'
 import { AppDispatch, RootState } from './index'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
@@ -47,6 +48,7 @@ export const login = (data: FormData) => async (dispatch: AppDispatch) => {
 			...payload,
 		})
 	} catch (error) {
+		dispatch(setLoadingError(error))
 	} finally {
 		dispatch(authLoadingEnd())
 	}
@@ -67,16 +69,15 @@ export const autologin = () => async (dispatch: AppDispatch) => {
 			})
 		}
 	} catch (error: any) {
+		dispatch(setLoadingError(error))
 	} finally {
 		dispatch(authLoadingEnd())
 	}
 }
 
 export const logout = () => async (dispatch: AppDispatch) => {
-	try {
-		localStorageService.removeAuthData()
-		dispatch(authLogout())
-	} catch (error: any) {}
+	localStorageService.removeAuthData()
+	dispatch(authLogout())
 }
 
 export const getCurrentUser = () => (state: RootState) => {

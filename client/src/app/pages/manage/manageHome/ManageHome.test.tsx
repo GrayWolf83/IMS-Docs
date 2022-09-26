@@ -1,25 +1,25 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import Manage from './manage'
+import ManageHome from './manageHome'
 
-describe('Manage page', () => {
-	test('Manage render', () => {
+describe('ManageHome page', () => {
+	test('ManageHome render', () => {
 		render(
 			<BrowserRouter>
-				<Manage />
+				<ManageHome />
 			</BrowserRouter>,
 		)
 
-		const manage = screen.getByTestId('Manage')
-		expect(manage).toBeInTheDocument()
+		const manageHome = screen.getByTestId('ManageHome')
+		expect(manageHome).toBeInTheDocument()
 	})
 
-	test('Manage snapshot', () => {
+	test('ManageHome snapshot', () => {
 		expect(
 			render(
 				<BrowserRouter>
-					<Manage />
+					<ManageHome />
 				</BrowserRouter>,
 			),
 		).toMatchSnapshot()

@@ -11,11 +11,11 @@ Object {
       >
         <div
           class="css-0"
-          data-testid="HomeMenuList"
+          data-testid="AppMenuList"
         >
           <div
             class="css-0"
-            data-testid="HomeMenuItem"
+            data-testid="AppMenuItem"
           >
             <a
               href="/book"
@@ -46,10 +46,10 @@ Object {
           </div>
           <div
             class="css-0"
-            data-testid="HomeMenuItem"
+            data-testid="AppMenuItem"
           >
             <a
-              href="/testing"
+              href="/test"
             >
               <div
                 class="css-0"
@@ -77,7 +77,7 @@ Object {
           </div>
           <div
             class="css-0"
-            data-testid="HomeMenuItem"
+            data-testid="AppMenuItem"
           >
             <a
               href="/system"
@@ -111,7 +111,7 @@ Object {
           </div>
           <div
             class="css-0"
-            data-testid="HomeMenuItem"
+            data-testid="AppMenuItem"
           >
             <a
               href="/system"
@@ -154,11 +154,11 @@ Object {
     >
       <div
         class="css-0"
-        data-testid="HomeMenuList"
+        data-testid="AppMenuList"
       >
         <div
           class="css-0"
-          data-testid="HomeMenuItem"
+          data-testid="AppMenuItem"
         >
           <a
             href="/book"
@@ -189,10 +189,10 @@ Object {
         </div>
         <div
           class="css-0"
-          data-testid="HomeMenuItem"
+          data-testid="AppMenuItem"
         >
           <a
-            href="/testing"
+            href="/test"
           >
             <div
               class="css-0"
@@ -220,7 +220,7 @@ Object {
         </div>
         <div
           class="css-0"
-          data-testid="HomeMenuItem"
+          data-testid="AppMenuItem"
         >
           <a
             href="/system"
@@ -254,7 +254,7 @@ Object {
         </div>
         <div
           class="css-0"
-          data-testid="HomeMenuItem"
+          data-testid="AppMenuItem"
         >
           <a
             href="/system"

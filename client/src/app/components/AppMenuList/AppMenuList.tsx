@@ -1,15 +1,15 @@
-import { Grid } from '@chakra-ui/react'
 import React from 'react'
+import { Grid } from '@chakra-ui/react'
 
-interface IHomeMenuList {
+interface IAppMenuList {
 	children: React.ReactNode
 }
 
-const HomeMenuList: React.FC<IHomeMenuList> = ({ children }) => {
+const AppMenuList: React.FC<IAppMenuList> = ({ children }) => {
 	return (
 		<Grid
+			data-testid='AppMenuList'
 			gap={3}
-			data-testid='HomeMenuList'
 			templateColumns={[
 				'repeat(1, 1fr)',
 				'repeat(2, 1fr)',
@@ -21,4 +21,4 @@ const HomeMenuList: React.FC<IHomeMenuList> = ({ children }) => {
 	)
 }
 
-export default HomeMenuList
+export default AppMenuList

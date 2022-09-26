@@ -5,6 +5,7 @@ import TextField from '../../../components/form/TextField'
 import { useAppDispatch } from '../../../hooks/useAppReduxHooks'
 import { loginSchema } from '../../../validation'
 import { login } from '../../../store/auth'
+import Header from '../../../components/Header'
 
 interface ILogin {}
 
@@ -16,18 +17,21 @@ const Login: React.FC<ILogin> = () => {
 	}
 
 	return (
-		<Box data-testid='Login' w='100%' mt='5'>
-			<Heading textAlign='center' fontSize='3xl'>
-				Авторизация
-			</Heading>
-			<FormComponent
-				btnLabel='Войти'
-				validationShema={loginSchema}
-				onSubmit={handleSubmit}>
-				<TextField name='email' label='Email' />
-				<TextField name='password' type='password' label='Пароль' />
-			</FormComponent>
-		</Box>
+		<>
+			<Header />
+			<Box data-testid='Login' w='100%' mt='5'>
+				<Heading textAlign='center' fontSize='3xl'>
+					Авторизация
+				</Heading>
+				<FormComponent
+					btnLabel='Войти'
+					validationShema={loginSchema}
+					onSubmit={handleSubmit}>
+					<TextField name='email' label='Email' />
+					<TextField name='password' type='password' label='Пароль' />
+				</FormComponent>
+			</Box>
+		</>
 	)
 }
 
