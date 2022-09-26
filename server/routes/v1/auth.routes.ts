@@ -6,7 +6,6 @@ import tokenService from '../../services/token.service'
 import UserAuth from '../../models/UserAuth'
 import mailService from '../../services/mail.service'
 import { getMailHtml } from '../../utils/getMailHtml'
-import fileMiddleware from '../../middleware/file.middleware'
 const generator = require('generate-password')
 
 const router = express.Router()
@@ -69,7 +68,7 @@ router.post('/register', async (req, res) => {
 	}
 })
 
-router.post('/login', fileMiddleware, async (req, res) => {
+router.post('/login', async (req, res) => {
 	try {
 		const { email, password } = req.body
 

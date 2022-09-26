@@ -1,12 +1,14 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import errorReducer from './error'
 import authReducer from './auth'
+import systemReducer from './system'
 
 const store = configureStore({
-	reducer: combineReducers({
+	reducer: {
 		errors: errorReducer,
 		auth: authReducer,
-	}),
+		systems: systemReducer,
+	},
 })
 
 export default store
