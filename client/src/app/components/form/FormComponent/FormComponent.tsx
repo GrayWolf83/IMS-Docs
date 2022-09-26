@@ -1,4 +1,4 @@
-import { Box, Button, Flex, useColorMode } from '@chakra-ui/react'
+import { Box, Button, Flex, useColorMode, useToast } from '@chakra-ui/react'
 import React from 'react'
 
 interface IFormComponent {
@@ -21,6 +21,7 @@ const FormComponent: React.FC<IFormComponent> = ({
 	}>({})
 	const [error, setError] = React.useState<{ [key: string]: string }>({})
 	const { colorMode } = useColorMode()
+	const toast = useToast()
 
 	React.useEffect(() => {
 		if (initialData) {
@@ -62,15 +63,21 @@ const FormComponent: React.FC<IFormComponent> = ({
 			})
 
 			onSubmit(formData)
+			setData({})
 		} else {
-			// toast.warning('Заполните все поля формы')
+			toast({
+				title: 'Заполните все поля формы',
+				status: 'error',
+				variant: 'solid',
+				isClosable: true,
+			})
 		}
 	}
 
 	return (
 		<Box
 			data-testid='FormComponent'
-			width={['100%', '75%', '50%']}
+			width={['95%', '75%', '50%', '40%']}
 			mx='auto'
 			bg={colorMode === 'dark' ? 'gray.600' : 'gray.300'}
 			mt='50px'
@@ -85,7 +92,7 @@ const FormComponent: React.FC<IFormComponent> = ({
 					const config = {
 						...child.props,
 						onChange: changeHandler,
-						value: data[child.props.name],
+						value: data[child.props.name] || '',
 						error: error[child?.props?.name],
 					}
 

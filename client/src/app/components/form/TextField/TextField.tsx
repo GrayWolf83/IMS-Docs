@@ -37,7 +37,10 @@ const TextField: React.FC<IProps> = ({
 	}
 
 	return (
-		<FormControl isRequired my='20px' isInvalid={Boolean(error)}>
+		<FormControl
+			data-testid='TextField'
+			my='20px'
+			isInvalid={Boolean(error)}>
 			<FormLabel>{label}</FormLabel>
 			<Flex>
 				<Input
@@ -45,6 +48,9 @@ const TextField: React.FC<IProps> = ({
 					name={name}
 					borderColor={colorMode === 'dark' ? 'gray.300' : 'gray.600'}
 					_focusVisible={{
+						borderColor: 'none',
+					}}
+					_hover={{
 						borderColor:
 							colorMode === 'dark' ? 'gray.300' : 'gray.600',
 					}}

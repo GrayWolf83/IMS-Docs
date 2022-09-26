@@ -4,10 +4,11 @@ import Login from './client/login'
 import Client from './client'
 import Home from './client/home'
 import Manage from './manage'
-import ManageHome from './manage/manage/manage'
+import ManageHome from './manage/manageHome'
 import Book from './client/book'
 import { useAppDispatch, useAppSelector } from '../hooks/useAppReduxHooks'
 import { autologin, getCurrentUser } from '../store/auth'
+import System from './manage/system'
 
 const Pages: React.FC = () => {
 	const dispatch = useAppDispatch()
@@ -27,6 +28,7 @@ const Pages: React.FC = () => {
 					</Route>
 					<Route path='/manage' element={<Manage />}>
 						<Route index element={<ManageHome />} />
+						<Route path='system' element={<System />} />
 					</Route>
 					<Route path='*' element={<Navigate to='/' />} />
 				</>
