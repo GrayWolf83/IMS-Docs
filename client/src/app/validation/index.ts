@@ -1,5 +1,22 @@
 import * as yup from 'yup'
 
+export const addSystemSchema = yup.object().shape({
+	fullName: yup
+		.string()
+		.required({
+			name: 'fullName',
+			text: 'Поле "Полное наименовани" обязательно для заполнения',
+		})
+		.trim(),
+	name: yup
+		.string()
+		.required({
+			name: 'name',
+			text: 'Поле "Сокращениее" обязательно для заполнения',
+		})
+		.trim(),
+})
+
 export const loginSchema = yup.object().shape({
 	password: yup
 		.string()

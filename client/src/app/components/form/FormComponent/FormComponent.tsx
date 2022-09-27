@@ -2,7 +2,7 @@ import { Box, Button, Flex, useColorMode, useToast } from '@chakra-ui/react'
 import React from 'react'
 
 interface IFormComponent {
-	initialData?: { [key: string]: string }
+	initialData?: { [key: string]: string | File }
 	onSubmit?: (data: { [key: string]: string | File }) => void
 	onSubmitFile?: (data: FormData) => void
 	btnLabel: string

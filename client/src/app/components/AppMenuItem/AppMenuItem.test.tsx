@@ -11,7 +11,12 @@ describe('AppMenuItem component', () => {
 		render(
 			<Provider store={store}>
 				<BrowserRouter>
-					<AppMenuItem path='/' Icon={GiRead} name='test' />
+					<AppMenuItem
+						path='/'
+						Icon={GiRead}
+						name='test'
+						fullName='Справочник организации'
+					/>
 				</BrowserRouter>
 			</Provider>,
 		)
@@ -25,7 +30,12 @@ describe('AppMenuItem component', () => {
 			render(
 				<Provider store={store}>
 					<BrowserRouter>
-						<AppMenuItem path='/' Icon={GiRead} name='test' />
+						<AppMenuItem
+							path='/'
+							Icon={GiRead}
+							name='test'
+							fullName='Справочник организации'
+						/>
 					</BrowserRouter>
 				</Provider>,
 			),

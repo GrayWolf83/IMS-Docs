@@ -3,28 +3,32 @@ import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '../../store'
-import GoHomeButton from './GoHomeButton'
+import TableHead from './TableHead'
 
-describe('GoHomeButton component', () => {
-	test('GoHomeButton render', () => {
+describe('TableHead component', () => {
+	test('TableHead render', () => {
 		render(
 			<Provider store={store}>
 				<BrowserRouter>
-					<GoHomeButton />
+					<TableHead titles={['1', '2']}>
+						<tbody></tbody>
+					</TableHead>
 				</BrowserRouter>
 			</Provider>,
 		)
 
-		const goHomeButton = screen.getByTestId('GoHomeButton')
-		expect(goHomeButton).toBeInTheDocument()
+		const tableHead = screen.getByTestId('TableHead')
+		expect(tableHead).toBeInTheDocument()
 	})
 
-	test('GoHomeButton snapshot', () => {
+	test('TableHead snapshot', () => {
 		expect(
 			render(
 				<Provider store={store}>
 					<BrowserRouter>
-						<GoHomeButton />
+						<TableHead titles={['1', '2']}>
+							<tbody></tbody>
+						</TableHead>
 					</BrowserRouter>
 				</Provider>,
 			),

@@ -1,33 +1,43 @@
 import { IconButton } from '@chakra-ui/react'
 import React from 'react'
-import { FaHome } from 'react-icons/fa'
+import { IconType } from 'react-icons/lib'
 import { useNavigate } from 'react-router-dom'
 import useColor from '../../hooks/useColor'
 
-interface IGoHomeButton {}
+interface INavigateButton {
+	path?: string
+	onClick?: () => void
+	Icon: IconType
+}
 
-const GoHomeButton: React.FC<IGoHomeButton> = () => {
+const NavigateButton: React.FC<INavigateButton> = ({ path, Icon, onClick }) => {
 	const navigate = useNavigate()
 	const { dark, light } = useColor()
 
 	const handleClick = () => {
-		navigate('/')
+		if (path) {
+			navigate(path)
+		}
+		if (onClick) {
+			onClick()
+		}
 	}
 
 	return (
 		<IconButton
+			data-testid='NavigateButton'
 			aria-label=''
+			icon={<Icon />}
 			variant='outline'
-			data-testid='GoHomeButton'
+			onClick={handleClick}
 			bg={dark}
 			color={light}
-			icon={<FaHome />}
+			m={1}
 			transition='all 0.2s ease-in-out'
 			fontSize='24px'
 			_hover={{ opacity: 0.7 }}
-			onClick={handleClick}
 		/>
 	)
 }
 
-export default GoHomeButton
+export default NavigateButton

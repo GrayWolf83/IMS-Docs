@@ -17,6 +17,7 @@ interface IProps {
 	type?: string
 	onChange?: (value: { [key: string]: string }) => void
 	value?: string
+	placeholder: string
 }
 
 const TextField: React.FC<IProps> = ({
@@ -26,6 +27,7 @@ const TextField: React.FC<IProps> = ({
 	type = 'text',
 	onChange,
 	value,
+	placeholder,
 }) => {
 	const { colorMode } = useColorMode()
 	const [passVisible, setPassVisible] = React.useState(false)
@@ -54,7 +56,7 @@ const TextField: React.FC<IProps> = ({
 						borderColor:
 							colorMode === 'dark' ? 'gray.300' : 'gray.600',
 					}}
-					placeholder='Пароль'
+					placeholder={placeholder}
 					onChange={handleChange}
 					value={value}
 					type={
