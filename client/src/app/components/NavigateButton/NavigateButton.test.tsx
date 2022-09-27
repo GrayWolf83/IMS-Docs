@@ -3,28 +3,29 @@ import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '../../store'
-import GoBackButton from './GoBackButton'
+import { FaAddressBook } from 'react-icons/fa'
+import NavigateButton from './NavigateButton'
 
-describe('GoBackButton component', () => {
-	test('GoBackButton render', () => {
+describe('NavigateButton component', () => {
+	test('NavigateButton render', () => {
 		render(
 			<Provider store={store}>
 				<BrowserRouter>
-					<GoBackButton />
+					<NavigateButton path='/' Icon={FaAddressBook} />
 				</BrowserRouter>
 			</Provider>,
 		)
 
-		const goBackButton = screen.getByTestId('GoBackButton')
-		expect(goBackButton).toBeInTheDocument()
+		const navigateButton = screen.getByTestId('NavigateButton')
+		expect(navigateButton).toBeInTheDocument()
 	})
 
-	test('GoBackButton snapshot', () => {
+	test('NavigateButton snapshot', () => {
 		expect(
 			render(
 				<Provider store={store}>
 					<BrowserRouter>
-						<GoBackButton />
+						<NavigateButton path='/' Icon={FaAddressBook} />
 					</BrowserRouter>
 				</Provider>,
 			),

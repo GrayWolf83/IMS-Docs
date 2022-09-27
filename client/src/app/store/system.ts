@@ -65,18 +65,20 @@ export const loadSystemsList = () => async (dispatch: AppDispatch) => {
 	}
 }
 
-export const addSystem = (data: ISystem) => async (dispatch: AppDispatch) => {
-	dispatch(systemLoadingStart())
-	try {
-		const payload: ISystem = await systemService.add(data)
+export const addSystem =
+	(data: { name: string; fullName: string }) =>
+	async (dispatch: AppDispatch) => {
+		dispatch(systemLoadingStart())
+		try {
+			const payload: ISystem = await systemService.add(data)
 
-		dispatch(systemAdded(payload))
-	} catch (error: any) {
-		dispatch(setLoadingError(error))
-	} finally {
-		dispatch(systemLoadingEnd())
+			dispatch(systemAdded(payload))
+		} catch (error: any) {
+			dispatch(setLoadingError(error))
+		} finally {
+			dispatch(systemLoadingEnd())
+		}
 	}
-}
 
 export const editSystem = (data: ISystem) => async (dispatch: AppDispatch) => {
 	dispatch(systemLoadingStart())
@@ -106,6 +108,10 @@ export const deleteSystem = (data: string) => async (dispatch: AppDispatch) => {
 
 export const getSystemsList = () => (state: RootState) => {
 	return state.systems.entities
+}
+
+export const getSystemById = (id: string) => (state: RootState) => {
+	return state.systems.entities.find((item) => item.id === id)
 }
 
 export default systemSlice.reducer

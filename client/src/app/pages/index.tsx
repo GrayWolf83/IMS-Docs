@@ -9,6 +9,8 @@ import Book from './client/book'
 import { useAppDispatch, useAppSelector } from '../hooks/useAppReduxHooks'
 import { autologin, getCurrentUser } from '../store/auth'
 import System from './manage/system'
+import AddSystem from './manage/addSystem'
+import EditSystem from './manage/editSystem'
 
 const Pages: React.FC = () => {
 	const dispatch = useAppDispatch()
@@ -29,6 +31,11 @@ const Pages: React.FC = () => {
 					<Route path='/manage' element={<Manage />}>
 						<Route index element={<ManageHome />} />
 						<Route path='system' element={<System />} />
+						<Route path='system/add' element={<AddSystem />} />
+						<Route
+							path='system/edit/:id'
+							element={<EditSystem />}
+						/>
 					</Route>
 					<Route path='*' element={<Navigate to='/' />} />
 				</>

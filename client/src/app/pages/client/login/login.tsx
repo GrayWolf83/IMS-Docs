@@ -34,8 +34,13 @@ const Login: React.FC<ILogin> = () => {
 					btnLabel='Войти'
 					validationShema={loginSchema}
 					onSubmit={handleSubmit}>
-					<TextField name='email' label='Email' />
-					<TextField name='password' type='password' label='Пароль' />
+					<TextField name='email' label='Email' placeholder='Email' />
+					<TextField
+						name='password'
+						type='password'
+						label='Пароль'
+						placeholder='Пароль'
+					/>
 				</FormComponent>
 			</Box>
 		</>

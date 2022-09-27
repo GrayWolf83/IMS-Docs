@@ -20,6 +20,7 @@ describe('FormComponent component', () => {
 							value=''
 							onChange={() => {}}
 							error={null}
+							placeholder='test'
 							label='data'
 						/>
 					</FormComponent>
@@ -45,6 +46,7 @@ describe('FormComponent component', () => {
 								value=''
 								onChange={() => {}}
 								error={null}
+								placeholder='test'
 								label='data'
 							/>
 						</FormComponent>

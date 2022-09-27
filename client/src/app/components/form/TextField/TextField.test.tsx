@@ -10,7 +10,7 @@ describe('TextField component', () => {
 		render(
 			<Provider store={store}>
 				<BrowserRouter>
-					<TextField name='test' label='Test' />
+					<TextField name='test' label='Test' placeholder='test' />
 				</BrowserRouter>
 			</Provider>,
 		)
@@ -24,7 +24,11 @@ describe('TextField component', () => {
 			render(
 				<Provider store={store}>
 					<BrowserRouter>
-						<TextField name='test' label='Test' />
+						<TextField
+							name='test'
+							label='Test'
+							placeholder='test'
+						/>
 					</BrowserRouter>
 				</Provider>,
 			),

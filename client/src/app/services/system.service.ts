@@ -8,7 +8,7 @@ const systemService = {
 		const { data } = await httpService.get(endpoint)
 		return data
 	},
-	add: async (payload: ISystem) => {
+	add: async (payload: { name: string; fullName: string }) => {
 		const { data } = await httpService.post(endpoint, payload)
 
 		return data
