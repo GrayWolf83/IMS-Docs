@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize')
 import DB from '../utils/database'
 import Department from './Department'
+import Document from './Document'
 
 const Familiarity = DB.define('Familiarity', {
 	id: {

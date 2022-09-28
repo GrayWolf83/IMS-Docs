@@ -16,25 +16,16 @@ Object {
           id="field-:r1:-label"
         >
           Test
-          <span
-            aria-hidden="true"
-            class="chakra-form__required-indicator css-0"
-            role="presentation"
-          >
-            *
-          </span>
         </label>
         <div
           class="css-0"
         >
           <input
-            aria-required="true"
             autocomplete="test"
             class="chakra-input css-0"
             id="field-:r1:"
             name="test"
-            placeholder="Пароль"
-            required=""
+            placeholder="test"
             type="text"
             value=""
           />
@@ -54,25 +45,16 @@ Object {
         id="field-:r1:-label"
       >
         Test
-        <span
-          aria-hidden="true"
-          class="chakra-form__required-indicator css-0"
-          role="presentation"
-        >
-          *
-        </span>
       </label>
       <div
         class="css-0"
       >
         <input
-          aria-required="true"
           autocomplete="test"
           class="chakra-input css-0"
           id="field-:r1:"
           name="test"
-          placeholder="Пароль"
-          required=""
+          placeholder="test"
           type="text"
           value=""
         />

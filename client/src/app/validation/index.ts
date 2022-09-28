@@ -1,18 +1,39 @@
 import * as yup from 'yup'
 
-export const addSystemSchema = yup.object().shape({
+export const DepartmentSchema = yup.object().shape({
+	index: yup.number().required({
+		name: 'index',
+		text: 'Поле "Индекс" обязательно для заполнения',
+	}),
 	fullName: yup
 		.string()
 		.required({
 			name: 'fullName',
-			text: 'Поле "Полное наименовани" обязательно для заполнения',
+			text: 'Поле "Наименование" обязательно для заполнения',
 		})
 		.trim(),
 	name: yup
 		.string()
 		.required({
 			name: 'name',
-			text: 'Поле "Сокращениее" обязательно для заполнения',
+			text: 'Поле "Сокращение" обязательно для заполнения',
+		})
+		.trim(),
+})
+
+export const SystemSchema = yup.object().shape({
+	fullName: yup
+		.string()
+		.required({
+			name: 'fullName',
+			text: 'Поле "Полное наименование" обязательно для заполнения',
+		})
+		.trim(),
+	name: yup
+		.string()
+		.required({
+			name: 'name',
+			text: 'Поле "Сокращение" обязательно для заполнения',
 		})
 		.trim(),
 })

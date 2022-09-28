@@ -20,8 +20,8 @@ describe('DeleteDialog component', () => {
 			</Provider>,
 		)
 
-		const deleteDialog = screen.getByTestId('DeleteDialog')
-		expect(deleteDialog).toBeInTheDocument()
+		const deleteDialog = screen.queryByTestId('DeleteDialog')
+		expect(deleteDialog).not.toBeInTheDocument()
 	})
 
 	test('DeleteDialog snapshot', () => {
@@ -33,7 +33,7 @@ describe('DeleteDialog component', () => {
 							onDelete={() => {}}
 							onClose={() => {}}
 							name='Test'
-							isOpen={false}
+							isOpen={true}
 						/>
 					</BrowserRouter>
 				</Provider>,

@@ -31,7 +31,11 @@ const DeleteDialog: React.FC<IDeleteDialog> = ({
 	}
 
 	return (
-		<Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+		<Modal
+			closeOnOverlayClick={false}
+			isOpen={isOpen}
+			onClose={onClose}
+			data-testid='DeleteDialog'>
 			<ModalOverlay />
 			<ModalContent bg={dark} color={light} mx={2}>
 				<ModalHeader>Удаление</ModalHeader>
