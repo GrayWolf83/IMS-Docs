@@ -11,6 +11,10 @@ const Department = DB.define('Department', {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
+	fullName: {
+		type: DataTypes.STRING,
+		allowNull: false,
+	},
 	index: {
 		type: DataTypes.INTEGER,
 		allowNull: false,

@@ -80,25 +80,16 @@ Object {
                 id="field-:r2:-label"
               >
                 Email
-                <span
-                  aria-hidden="true"
-                  class="chakra-form__required-indicator css-0"
-                  role="presentation"
-                >
-                  *
-                </span>
               </label>
               <div
                 class="css-0"
               >
                 <input
-                  aria-required="true"
                   autocomplete="email"
                   class="chakra-input css-0"
                   id="field-:r2:"
                   name="email"
-                  placeholder="Пароль"
-                  required=""
+                  placeholder="Email"
                   type="text"
                   value=""
                 />
@@ -115,25 +106,16 @@ Object {
                 id="field-:r3:-label"
               >
                 Пароль
-                <span
-                  aria-hidden="true"
-                  class="chakra-form__required-indicator css-0"
-                  role="presentation"
-                >
-                  *
-                </span>
               </label>
               <div
                 class="css-0"
               >
                 <input
-                  aria-required="true"
                   autocomplete="password"
                   class="chakra-input css-0"
                   id="field-:r3:"
                   name="password"
                   placeholder="Пароль"
-                  required=""
                   type="password"
                   value=""
                 />
@@ -252,25 +234,16 @@ Object {
               id="field-:r2:-label"
             >
               Email
-              <span
-                aria-hidden="true"
-                class="chakra-form__required-indicator css-0"
-                role="presentation"
-              >
-                *
-              </span>
             </label>
             <div
               class="css-0"
             >
               <input
-                aria-required="true"
                 autocomplete="email"
                 class="chakra-input css-0"
                 id="field-:r2:"
                 name="email"
-                placeholder="Пароль"
-                required=""
+                placeholder="Email"
                 type="text"
                 value=""
               />
@@ -287,25 +260,16 @@ Object {
               id="field-:r3:-label"
             >
               Пароль
-              <span
-                aria-hidden="true"
-                class="chakra-form__required-indicator css-0"
-                role="presentation"
-              >
-                *
-              </span>
             </label>
             <div
               class="css-0"
             >
               <input
-                aria-required="true"
                 autocomplete="password"
                 class="chakra-input css-0"
                 id="field-:r3:"
                 name="password"
                 placeholder="Пароль"
-                required=""
                 type="password"
                 value=""
               />

@@ -5,6 +5,7 @@ import helmet from 'helmet'
 import DB from './utils/database'
 import * as dotenv from 'dotenv'
 import routerV1 from './routes/v1'
+import Preloaded from './services/preloaded.service'
 
 dotenv.config()
 const app = express()
@@ -19,6 +20,7 @@ const port = process.env.PORT
 async function start() {
 	try {
 		await DB.sync()
+		await Preloaded()
 		app.listen(port, () => {
 			console.log(`Сервер запущен, порт ${port}`)
 		})

@@ -1,6 +1,9 @@
 import { IDepartment } from './../../types/Department'
 import express from 'express'
 import Department from '../../models/Department'
+import Document from '../../models/Document'
+import User from '../../models/User'
+import Familiarity from '../../models/Familiarity'
 
 const router = express.Router()
 const msgName = 'Подразделение'
@@ -17,7 +20,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	try {
-		const { name, index } = req.body
+		const { name, fullName, index } = req.body
 
 		const isWithThisName: IDepartment = await Department.findOne({
 			where: { name },
@@ -32,6 +35,7 @@ router.post('/', async (req, res) => {
 
 		const department: IDepartment = await Department.create({
 			name,
+			fullName,
 			index,
 		})
 
@@ -43,7 +47,7 @@ router.post('/', async (req, res) => {
 
 router.patch('/:id', async (req, res) => {
 	const id = req.params.id
-	const { name, index } = req.body
+	const { name, fullName, index } = req.body
 	try {
 		const oldItem: IDepartment = await Department.findOne({
 			where: { id },
@@ -55,7 +59,10 @@ router.patch('/:id', async (req, res) => {
 				code: 400,
 			})
 		} else {
-			await Department.update({ name, index }, { where: { id } })
+			await Department.update(
+				{ name, fullName, index },
+				{ where: { id } },
+			)
 		}
 
 		const department: IDepartment = await Department.findOne({
@@ -70,6 +77,8 @@ router.patch('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
 	const id = req.params.id
+	console.log('id', id)
+
 	try {
 		const department: IDepartment = await Department.findOne({
 			where: { id },
@@ -81,6 +90,23 @@ router.delete('/:id', async (req, res) => {
 				code: 400,
 			})
 		}
+
+		const defaultDepartment = await Department.findOne({
+			where: { name: 'Без подразделения' },
+		})
+
+		await Document.update(
+			{ owner: defaultDepartment.id },
+			{ where: { owner: id } },
+		)
+		await User.update(
+			{ department: defaultDepartment.id },
+			{ where: { department: id } },
+		)
+		await Familiarity.update(
+			{ department: defaultDepartment.id },
+			{ where: { department: id } },
+		)
 
 		await Department.destroy({
 			where: { id },

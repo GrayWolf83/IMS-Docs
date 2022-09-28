@@ -38,7 +38,7 @@ const Home: React.FC<IHome> = () => {
 					Icon={FaListAlt}
 				/>
 				<AppMenuItem
-					path='/test'
+					path='/famil'
 					name='Ознакомление'
 					fullName='Ознакомление с ВНД'
 					Icon={GiRead}
