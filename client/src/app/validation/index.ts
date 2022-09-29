@@ -1,5 +1,19 @@
 import * as yup from 'yup'
 
+export const PositionSchema = yup.object().shape({
+	index: yup.number().required({
+		name: 'index',
+		text: 'Поле "Индекс" обязательно для заполнения',
+	}),
+	name: yup
+		.string()
+		.required({
+			name: 'name',
+			text: 'Поле "Сокращение" обязательно для заполнения',
+		})
+		.trim(),
+})
+
 export const DepartmentSchema = yup.object().shape({
 	index: yup.number().required({
 		name: 'index',

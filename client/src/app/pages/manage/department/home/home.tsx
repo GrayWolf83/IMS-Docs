@@ -1,28 +1,13 @@
-import {
-	Box,
-	Flex,
-	Heading,
-	Tbody,
-	Td,
-	Tr,
-	useDisclosure,
-} from '@chakra-ui/react'
 import React from 'react'
+import { Box, Tbody, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import NavigateButton from '../../../../components/NavigateButton'
-import { GoArrowLeft } from 'react-icons/go'
-import {
-	useAppDispatch,
-	useAppSelector,
-} from '../../../../hooks/useAppReduxHooks'
-import {
-	deleteDepartment,
-	getDepartmentsList,
-	loadDepartmentList,
-} from '../../../../store/department'
-import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa'
+import { useAppDispatch, useAppSelector} from '../../../../hooks/useAppReduxHooks'
+import { deleteDepartment, getDepartmentsList, loadDepartmentList } from '../../../../store/department'
+import { FaEdit, FaTrash } from 'react-icons/fa'
 import { IDepartment } from '../../../../types/department'
 import DeleteDialog from '../../../../components/DeleteDialog'
 import TableHead from '../../../../components/TableHead'
+import PageTitle from '../../../../components/PageTitle'
 
 interface IHome {}
 
@@ -42,13 +27,11 @@ const Home: React.FC<IHome> = () => {
 
 	return (
 		<Box data-testid='ManageDepartmentHome' mt={3}>
-			<Flex alignItems='center'>
-				<NavigateButton path='/manage' Icon={GoArrowLeft} />
-				<Heading as='h3' ms={3} me='auto' fontSize='2xl'>
-					Структурные подразделения
-				</Heading>
-				<NavigateButton path='add' Icon={FaPlus} />
-			</Flex>
+			<PageTitle
+				title='Структурные подразделения'
+				backPath='/manage'
+				addButton={true}
+			/>
 
 			{Boolean(departments.length) && (
 				<TableHead
@@ -60,10 +43,13 @@ const Home: React.FC<IHome> = () => {
 					]}>
 					<Tbody>
 						{departments.map((department) => (
-							<Tr key={department.id}>
-								<Td fontSize='18px'>{department.index}</Td>
-								<Td fontSize='18px'>{department.name}</Td>
-								<Td fontSize='18px'>{department.fullName}</Td>
+							<Tr
+								key={department.id}
+								fontSize='18px'
+								css={{ td: { padding: 7 } }}>
+								<Td>{department.index}</Td>
+								<Td>{department.name}</Td>
+								<Td>{department.fullName}</Td>
 								<Td>
 									<NavigateButton
 										path={`edit/${department.id}`}
