@@ -1,18 +1,18 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
 import { CgListTree } from 'react-icons/cg'
-import { FaThList, FaHome, FaListAlt, FaUsers } from 'react-icons/fa'
+import { FaThList, FaListAlt, FaUsers } from 'react-icons/fa'
 import { HiDocumentDuplicate } from 'react-icons/hi'
 import AppMenuList from '../../../components/AppMenuList'
 import AppMenuItem from '../../../components/AppMenuItem'
-import NavigateButton from '../../../components/NavigateButton'
+import PageTitle from '../../../components/PageTitle'
 
 interface IManageHome {}
 
 const Home: React.FC<IManageHome> = () => {
 	return (
 		<Box data-testid='ManageHome' mt={3}>
-			<NavigateButton path='/' Icon={FaHome} />
+			<PageTitle title='Управление системой' backPath='/' />
 			<Box mt={3}>
 				<AppMenuList>
 					<AppMenuItem

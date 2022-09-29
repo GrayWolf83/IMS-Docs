@@ -53,11 +53,7 @@ router.post('/register', async (req, res) => {
 			'Регистрация в системе IMS-Docs',
 		)
 
-		const tokens = tokenService.generate({ id: newUser.id })
-		await tokenService.save(newUser.id, tokens.refreshToken)
-
 		res.status(201).send({
-			...tokens,
 			user: newUser,
 		})
 	} catch (e) {

@@ -1,5 +1,6 @@
-import { Box, Button, Flex, useColorMode, useToast } from '@chakra-ui/react'
+import { Box, Button, Flex, useToast } from '@chakra-ui/react'
 import React from 'react'
+import useColor from '../../../hooks/useColor'
 
 interface IFormComponent {
 	initialData?: { [key: string]: string | File }
@@ -22,7 +23,7 @@ const FormComponent: React.FC<IFormComponent> = ({
 		[key: string]: string | File
 	}>({})
 	const [error, setError] = React.useState<{ [key: string]: string }>({})
-	const { colorMode } = useColorMode()
+	const { dark, light } = useColor()
 	const toast = useToast()
 
 	React.useEffect(() => {
@@ -88,7 +89,8 @@ const FormComponent: React.FC<IFormComponent> = ({
 			data-testid='FormComponent'
 			width={['95%', '75%', '50%', '40%']}
 			mx='auto'
-			bg={colorMode === 'dark' ? 'gray.600' : 'gray.300'}
+			bg={dark}
+			color={light}
 			mt='50px'
 			p='20px'
 			borderRadius='10px'

@@ -1,5 +1,6 @@
 import { Table, TableContainer, Th, Thead, Tr } from '@chakra-ui/react'
 import React from 'react'
+import useColor from '../../hooks/useColor'
 
 interface ITableHead {
 	children: React.ReactNode
@@ -7,9 +8,12 @@ interface ITableHead {
 }
 
 const TableHead: React.FC<ITableHead> = ({ children, titles }) => {
+	const { light } = useColor()
+
 	return (
 		<TableContainer
 			data-testid='TableHead'
+			color={light}
 			mt={3}
 			css={{
 				'&::-webkit-scrollbar': {
