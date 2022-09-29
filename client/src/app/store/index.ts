@@ -3,6 +3,7 @@ import errorReducer from './error'
 import authReducer from './auth'
 import systemReducer from './system'
 import departmentReducer from './department'
+import positionReducer from './position'
 
 const store = configureStore({
 	reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
 		auth: authReducer,
 		systems: systemReducer,
 		departments: departmentReducer,
+		positions: positionReducer,
 	},
 })
 

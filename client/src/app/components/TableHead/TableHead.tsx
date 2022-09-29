@@ -8,8 +8,24 @@ interface ITableHead {
 
 const TableHead: React.FC<ITableHead> = ({ children, titles }) => {
 	return (
-		<TableContainer data-testid='TableHead' mt={3}>
-			<Table>
+		<TableContainer
+			data-testid='TableHead'
+			mt={3}
+			css={{
+				'&::-webkit-scrollbar': {
+					width: '5px',
+				},
+				'&::-webkit-scrollbar-track': {
+					width: '6px',
+				},
+				'&::-webkit-scrollbar-thumb': {
+					background: 'gray',
+					borderRadius: '24px',
+				},
+			}}
+			maxH='calc(100vh - 150px)'
+			overflowY='auto'>
+			<Table variant='striped'>
 				<Thead>
 					<Tr>
 						{titles.map((title) => (

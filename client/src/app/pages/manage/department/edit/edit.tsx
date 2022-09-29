@@ -1,7 +1,5 @@
-import { Box, Flex, Heading } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import React from 'react'
-import NavigateButton from '../../../../components/NavigateButton'
-import { GoArrowLeft } from 'react-icons/go'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import {
 	useAppDispatch,
@@ -9,6 +7,7 @@ import {
 } from '../../../../hooks/useAppReduxHooks'
 import { editDepartment, getDepartmentById } from '../../../../store/department'
 import DepartmentForm from '../../../../components/PagesForms/DepartmentForm'
+import PageTitle from '../../../../components/PageTitle'
 
 interface IEdit {}
 
@@ -22,7 +21,7 @@ const Edit: React.FC<IEdit> = () => {
 		return <Navigate to='/manage/department' />
 	}
 
-	const onSubmit = (data: { [key: string]: string | File }) => {
+	const handleSubmit = (data: { [key: string]: string | File }) => {
 		dispatch(
 			editDepartment({
 				id: department.id,
@@ -36,14 +35,12 @@ const Edit: React.FC<IEdit> = () => {
 
 	return (
 		<Box data-testid='ManageDepartmentEdit' mt={3}>
-			<Flex alignItems='center'>
-				<NavigateButton path='/manage/department' Icon={GoArrowLeft} />
-				<Heading as='h3' ms={3} fontSize='2xl'>
-					Редактирование {department.name}
-				</Heading>
-			</Flex>
+			<PageTitle
+				title={`Редактирование ${department.name}`}
+				backPath='/manage/department'
+			/>
 			<DepartmentForm
-				onSubmit={onSubmit}
+				onSubmit={handleSubmit}
 				initialData={{ ...department, index: String(department.index) }}
 			/>
 		</Box>

@@ -4,51 +4,59 @@ import {
 	useAppDispatch,
 	useAppSelector,
 } from '../../../../hooks/useAppReduxHooks'
-import { deleteSystem, getSystemsList } from '../../../../store/system'
 import { FaEdit, FaTrash } from 'react-icons/fa'
 import NavigateButton from '../../../../components/NavigateButton'
 import TableHead from '../../../../components/TableHead'
 import DeleteDialog from '../../../../components/DeleteDialog'
-import { ISystem } from '../../../../types/system'
 import PageTitle from '../../../../components/PageTitle'
+import {
+	deletePosition,
+	getPositionsList,
+	loadPositionsList,
+} from '../../../../store/position'
+import { IPosition } from '../../../../types/position'
 
-interface ISystemProps {}
+interface IPositionProps {}
 
-const Home: React.FC<ISystemProps> = () => {
-	const systems = useAppSelector(getSystemsList())
+const Home: React.FC<IPositionProps> = () => {
+	const positions = useAppSelector(getPositionsList())
 	const { isOpen, onOpen, onClose } = useDisclosure()
-	const [deleted, setDeleted] = React.useState<ISystem | null>()
+	const [deleted, setDeleted] = React.useState<IPosition | null>()
 	const dispatch = useAppDispatch()
 
 	const deleteHandler = (id: string) => {
-		dispatch(deleteSystem(id))
+		dispatch(deletePosition(id))
 	}
 
+	React.useEffect(() => {
+		dispatch(loadPositionsList())
+	}, [dispatch])
+
 	return (
-		<Box data-testid='SystemHome' mt={3}>
+		<Box data-testid='ManagePositionHome' mt={3}>
 			<PageTitle
-				title='Системы менеджмента'
+				title='Список должностей'
 				backPath='/manage'
 				addButton={true}
 			/>
-			{Boolean(systems.length) && (
-				<TableHead titles={['Наименование', 'Сокращение', 'Действия']}>
+			{Boolean(positions.length) && (
+				<TableHead titles={['Индекс', 'Наименование', 'Действия']}>
 					<Tbody>
-						{systems.map((system) => (
+						{positions.map((item) => (
 							<Tr
-								key={system.id}
+								key={item.id}
 								fontSize='18px'
 								css={{ td: { padding: 7 } }}>
-								<Td>{system.fullName}</Td>
-								<Td>{system.name}</Td>
+								<Td>{item.index}</Td>
+								<Td>{item.name}</Td>
 								<Td>
 									<NavigateButton
-										path={`edit/${system.id}`}
+										path={`edit/${item.id}`}
 										Icon={FaEdit}
 									/>
 									<NavigateButton
 										onClick={() => {
-											setDeleted(system)
+											setDeleted(item)
 											onOpen()
 										}}
 										Icon={FaTrash}

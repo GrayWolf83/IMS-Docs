@@ -1,6 +1,7 @@
 import { IPosition } from './../../types/Position'
 import express from 'express'
 import Position from '../../models/Position'
+import User from '../../models/User'
 
 const router = express.Router()
 const msgName = 'Позиция'
@@ -81,6 +82,15 @@ router.delete('/:id', async (req, res) => {
 				code: 400,
 			})
 		}
+
+		const defaultPosition: IPosition = await Position.findOne({
+			where: { name: 'Должность не указана' },
+		})
+
+		await User.update(
+			{ position: defaultPosition.id },
+			{ where: { position: id } },
+		)
 
 		await Position.destroy({
 			where: { id },

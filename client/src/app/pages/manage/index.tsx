@@ -4,6 +4,7 @@ import ProtectedManage from '../../components/ProtectedManage'
 import MainLayout from '../../layouts/main'
 import Department from './department'
 import Home from './home'
+import Position from './position'
 import System from './system'
 
 const Manage: React.FC = () => {
@@ -14,6 +15,7 @@ const Manage: React.FC = () => {
 					<Route index element={<Home />} />
 					<Route path='system/*' element={<System />} />
 					<Route path='department/*' element={<Department />} />
+					<Route path='position/*' element={<Position />} />
 					<Route path='*' element={<Navigate to='/' />} />
 				</Route>
 			</Routes>

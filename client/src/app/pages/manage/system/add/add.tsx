@@ -1,11 +1,10 @@
-import { Box, Flex, Heading } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import NavigateButton from '../../../../components/NavigateButton'
 import { useAppDispatch } from '../../../../hooks/useAppReduxHooks'
 import { addSystem } from '../../../../store/system'
-import { GoArrowLeft } from 'react-icons/go'
 import SystemForm from '../../../../components/PagesForms/SystemForm'
+import PageTitle from '../../../../components/PageTitle'
 
 interface IAddSystem {}
 
@@ -13,7 +12,7 @@ const Add: React.FC<IAddSystem> = () => {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 
-	const onSubmit = (data: { [key: string]: string | File }) => {
+	const handleSubmit = (data: { [key: string]: string | File }) => {
 		dispatch(
 			addSystem({
 				name: String(data.name),
@@ -25,13 +24,8 @@ const Add: React.FC<IAddSystem> = () => {
 
 	return (
 		<Box data-testid='ManageSystemAdd' mt={3}>
-			<Flex alignItems='center'>
-				<NavigateButton path='/manage/system' Icon={GoArrowLeft} />
-				<Heading as='h3' ms={3} fontSize='2xl'>
-					Новая система
-				</Heading>
-			</Flex>
-			<SystemForm onSubmit={onSubmit} />
+			<PageTitle title='Новая система' backPath='/manage/system' />
+			<SystemForm onSubmit={handleSubmit} />
 		</Box>
 	)
 }
