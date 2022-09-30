@@ -6,6 +6,7 @@ import Department from './department'
 import Home from './home'
 import Position from './position'
 import System from './system'
+import User from './user'
 
 const Manage: React.FC = () => {
 	return (
@@ -16,6 +17,7 @@ const Manage: React.FC = () => {
 					<Route path='system/*' element={<System />} />
 					<Route path='department/*' element={<Department />} />
 					<Route path='position/*' element={<Position />} />
+					<Route path='user/*' element={<User />} />
 					<Route path='*' element={<Navigate to='/' />} />
 				</Route>
 			</Routes>

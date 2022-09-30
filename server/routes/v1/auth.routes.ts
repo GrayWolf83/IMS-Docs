@@ -4,71 +4,14 @@ import User from '../../models/User'
 import { IUser } from '../../types/User'
 import tokenService from '../../services/token.service'
 import UserAuth from '../../models/UserAuth'
-import mailService from '../../services/mail.service'
-import { getMailHtml } from '../../utils/getMailHtml'
-const generator = require('generate-password')
 
 const router = express.Router()
-
-router.post('/register', async (req, res) => {
-	try {
-		const { name, position, department, phone, email } = req.body
-
-		const existingUser = await User.findOne({ where: { email } })
-		if (existingUser) {
-			return res.status(400).json({
-				message: 'Данный email уже зарегистрирован',
-				code: 400,
-			})
-		}
-
-		await User.create({
-			name,
-			position,
-			department,
-			email,
-			phone,
-			role: 'User',
-		})
-
-		const newUser: IUser = await User.findOne({ where: { email } })
-
-		const password = generator.generate({
-			length: 10,
-			numbers: true,
-			symbols: true,
-			exclude: '".,:[]{}',
-		})
-
-		const hashedPass = await bcrypt.hash(password, 12)
-
-		await UserAuth.create({
-			user: newUser.id,
-			password: hashedPass,
-		})
-
-		await mailService.sendMail(
-			newUser.email,
-			getMailHtml(newUser.name, password),
-			'Регистрация в системе IMS-Docs',
-		)
-
-		res.status(201).send({
-			user: newUser,
-		})
-	} catch (e) {
-		res.status(500).json({
-			message: 'На сервере произошла ошибка!',
-			code: 500,
-		})
-	}
-})
 
 router.post('/login', async (req, res) => {
 	try {
 		const { email, password } = req.body
 
-		const user = await User.findOne({ where: { email } })
+		const user: IUser = await User.findOne({ where: { email } })
 
 		if (!user) {
 			return res

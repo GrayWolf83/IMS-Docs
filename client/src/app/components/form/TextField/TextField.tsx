@@ -3,12 +3,12 @@ import {
 	FormControl,
 	FormLabel,
 	Input,
-	useColorMode,
 	Flex,
 	IconButton,
 	FormErrorMessage,
 } from '@chakra-ui/react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import useColor from '../../../hooks/useColor'
 
 interface IProps {
 	error?: string | null
@@ -29,7 +29,7 @@ const TextField: React.FC<IProps> = ({
 	value,
 	placeholder,
 }) => {
-	const { colorMode } = useColorMode()
+	const { light } = useColor()
 	const [passVisible, setPassVisible] = React.useState(false)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,13 +48,12 @@ const TextField: React.FC<IProps> = ({
 				<Input
 					autoComplete={name}
 					name={name}
-					borderColor={colorMode === 'dark' ? 'gray.300' : 'gray.600'}
+					borderColor={light}
 					_focusVisible={{
 						borderColor: 'none',
 					}}
 					_hover={{
-						borderColor:
-							colorMode === 'dark' ? 'gray.300' : 'gray.600',
+						borderColor: light,
 					}}
 					placeholder={placeholder}
 					onChange={handleChange}
@@ -72,9 +71,7 @@ const TextField: React.FC<IProps> = ({
 						size='md'
 						fontSize='lg'
 						variant='outline'
-						borderColor={
-							colorMode === 'dark' ? 'gray.300' : 'gray.600'
-						}
+						borderColor={light}
 						color='current'
 						marginLeft='1'
 						aria-label=''

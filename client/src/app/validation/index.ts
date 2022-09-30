@@ -1,5 +1,43 @@
 import * as yup from 'yup'
 
+export const UserSchema = yup.object().shape({
+	email: yup
+		.string()
+		.required({
+			name: 'email',
+			text: 'Поле "email" обязательно для заполнения',
+		})
+		.email({ name: 'email', text: 'email введен некорректно' }),
+	phone: yup
+		.string()
+		.required({
+			name: 'phone',
+			text: 'Поле "Телефон" обязательно для заполнения',
+		})
+		.trim(),
+	position: yup
+		.string()
+		.required({
+			name: 'position',
+			text: 'Поле "Должность" обязательно для заполнения',
+		})
+		.trim(),
+	department: yup
+		.string()
+		.required({
+			name: 'department',
+			text: 'Поле "Подразделение" обязательно для заполнения',
+		})
+		.trim(),
+	name: yup
+		.string()
+		.required({
+			name: 'name',
+			text: 'Поле "Ф.И.О." обязательно для заполнения',
+		})
+		.trim(),
+})
+
 export const PositionSchema = yup.object().shape({
 	index: yup.number().required({
 		name: 'index',

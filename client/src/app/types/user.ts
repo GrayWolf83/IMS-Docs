@@ -1,7 +1,10 @@
-export interface IUser {
+export interface IUser extends INewUser {
 	id: string
-	name: string
 	role: 'User' | 'Manage'
+}
+
+export interface INewUser {
+	name: string
 	position: string
 	department: string
 	phone: string
