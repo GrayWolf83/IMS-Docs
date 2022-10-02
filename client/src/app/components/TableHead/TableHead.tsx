@@ -8,7 +8,7 @@ interface ITableHead {
 }
 
 const TableHead: React.FC<ITableHead> = ({ children, titles }) => {
-	const { light } = useColor()
+	const { light, dark } = useColor()
 
 	return (
 		<TableContainer
@@ -29,9 +29,9 @@ const TableHead: React.FC<ITableHead> = ({ children, titles }) => {
 			}}
 			maxH='calc(100vh - 150px)'
 			overflowY='auto'>
-			<Table variant='striped'>
+			<Table>
 				<Thead>
-					<Tr>
+					<Tr bg={dark}>
 						{titles.map((title) => (
 							<Th key={title}>{title}</Th>
 						))}

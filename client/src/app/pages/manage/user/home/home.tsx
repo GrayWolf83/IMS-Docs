@@ -16,6 +16,7 @@ import {
 } from '../../../../store/department'
 import { getPositionsList, loadPositionsList } from '../../../../store/position'
 import { IUser } from '../../../../types/user'
+import useColor from '../../../../hooks/useColor'
 
 interface ISystemProps {}
 
@@ -26,6 +27,7 @@ const Home: React.FC<ISystemProps> = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const [deleted, setDeleted] = React.useState<IUser | null>()
 	const dispatch = useAppDispatch()
+	const { dark } = useColor()
 
 	const deleteHandler = (id: string) => {
 		dispatch(deleteUser(id))
@@ -56,6 +58,7 @@ const Home: React.FC<ISystemProps> = () => {
 						'Должность',
 						'Телефон',
 						'Email',
+						'Роль',
 						'Действия',
 					]}>
 					<Tbody>
@@ -64,11 +67,12 @@ const Home: React.FC<ISystemProps> = () => {
 								(user) => user.department === depart.id,
 							)
 							return Boolean(depUsers.length) ? (
-								<>
+								<React.Fragment key={depart.id}>
 									<Tr
 										fontSize='18px'
-										css={{ td: { padding: 7 } }}>
-										<Th colSpan={5}>{depart.fullName}</Th>
+										css={{ td: { padding: 7 } }}
+										bg={dark}>
+										<Th colSpan={6}>{depart.fullName}</Th>
 									</Tr>
 									{depUsers.map((user) => (
 										<Tr
@@ -81,6 +85,11 @@ const Home: React.FC<ISystemProps> = () => {
 											</Td>
 											<Td>{user.phone}</Td>
 											<Td>{user.email}</Td>
+											<Td>
+												{user.role === 'User'
+													? 'Пользователь'
+													: 'Менеджер'}
+											</Td>
 											<Td>
 												<NavigateButton
 													path={`edit/${user.id}`}
@@ -96,7 +105,7 @@ const Home: React.FC<ISystemProps> = () => {
 											</Td>
 										</Tr>
 									))}
-								</>
+								</React.Fragment>
 							) : null
 						})}
 					</Tbody>

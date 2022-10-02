@@ -101,9 +101,9 @@ const FormComponent: React.FC<IFormComponent> = ({
 				style={{ width: '100%' }}>
 				{React.Children.map(children, (child: any) => {
 					const config = {
-						...child.props,
+						...child?.props,
 						onChange: changeHandler,
-						value: data[child.props.name] || '',
+						value: data[child?.props?.name] || '',
 						error: error[child?.props?.name],
 					}
 

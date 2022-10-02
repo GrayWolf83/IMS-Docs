@@ -6,13 +6,11 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import useColor from '../../../hooks/useColor'
-import { IDepartment } from '../../../types/department'
-import { IPosition } from '../../../types/position'
 
 interface ISelectField {
 	name: string
 	label: string
-	items: IPosition[] | IDepartment[]
+	items: { id: string; name: string }[]
 	error?: string | null
 	onChange?: (value: { [key: string]: string }) => void
 	value?: string

@@ -11,7 +11,7 @@ describe('SelectField component', () => {
 			<Provider store={store}>
 				<BrowserRouter>
 					<SelectField
-						items={[{ id: '1', name: 'test', index: 1 }]}
+						items={[{ id: '1', name: 'test' }]}
 						name='test'
 						label='test'
 					/>
@@ -29,7 +29,7 @@ describe('SelectField component', () => {
 				<Provider store={store}>
 					<BrowserRouter>
 						<SelectField
-							items={[{ id: '1', name: 'test', index: 1 }]}
+							items={[{ id: '1', name: 'test' }]}
 							name='test'
 							label='test'
 						/>
