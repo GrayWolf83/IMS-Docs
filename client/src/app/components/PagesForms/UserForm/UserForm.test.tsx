@@ -9,11 +9,7 @@ describe('UserForm component', () => {
 		render(
 			<Provider store={store}>
 				<BrowserRouter>
-					<UserForm
-						onSubmit={() => {}}
-						positions={[]}
-						departments={[]}
-					/>
+					<UserForm onSubmit={() => {}} />
 				</BrowserRouter>
 			</Provider>,
 		)
@@ -27,11 +23,7 @@ describe('UserForm component', () => {
 			render(
 				<Provider store={store}>
 					<BrowserRouter>
-						<UserForm
-							onSubmit={() => {}}
-							positions={[]}
-							departments={[]}
-						/>
+						<UserForm onSubmit={() => {}} />
 					</BrowserRouter>
 				</Provider>,
 			),

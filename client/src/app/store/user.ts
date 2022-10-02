@@ -105,4 +105,8 @@ export const getUsersList = () => (state: RootState) => {
 	return state.users.entities
 }
 
+export const getUserById = (id: string) => (state: RootState) => {
+	return state.users.entities.find((user) => user.id === id)
+}
+
 export default userSlice.reducer

@@ -3,23 +3,20 @@ import React from 'react'
 import FormComponent from '../../form/FormComponent'
 import TextField from '../../form/TextField'
 import { UserSchema } from '../../../validation'
-import { IPosition } from '../../../types/position'
-import { IDepartment } from '../../../types/department'
 import SelectField from '../../form/SelectField'
+import { useAppSelector } from '../../../hooks/useAppReduxHooks'
+import { getPositionsList } from '../../../store/position'
+import { getDepartmentsList } from '../../../store/department'
 
 interface IUserForm {
 	onSubmit: (data: { [key: string]: string | File }) => void
 	initialData?: { [key: string]: string | File }
-	positions: IPosition[]
-	departments: IDepartment[]
 }
 
-const UserForm: React.FC<IUserForm> = ({
-	onSubmit,
-	initialData,
-	positions,
-	departments,
-}) => {
+const UserForm: React.FC<IUserForm> = ({ onSubmit, initialData }) => {
+	const positions = useAppSelector(getPositionsList())
+	const departments = useAppSelector(getDepartmentsList())
+
 	return (
 		<Box data-testid='UserForm'>
 			<FormComponent
@@ -38,6 +35,18 @@ const UserForm: React.FC<IUserForm> = ({
 					label='Должность'
 					items={positions}
 				/>
+				{Boolean(initialData) ? (
+					<SelectField
+						name='role'
+						label='Роль'
+						items={[
+							{ id: 'User', name: 'User' },
+							{ id: 'Manage', name: 'Manage' },
+						]}
+					/>
+				) : (
+					<></>
+				)}
 
 				<TextField label='Телефон' name='phone' placeholder='Телефон' />
 				<TextField label='Email' name='email' placeholder='Email' />
