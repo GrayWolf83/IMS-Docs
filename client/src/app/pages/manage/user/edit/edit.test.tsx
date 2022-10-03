@@ -2,25 +2,31 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import Edit from './edit'
+import { Provider } from 'react-redux'
+import store from '../../../../store'
 
-describe('Edit page', () => {
-	test('Edit render', () => {
+describe('ManageUserEdit page', () => {
+	test('ManageUserEdit render', () => {
 		render(
-			<BrowserRouter>
-				<Edit />
-			</BrowserRouter>,
+			<Provider store={store}>
+				<BrowserRouter>
+					<Edit />
+				</BrowserRouter>
+			</Provider>,
 		)
 
-		const edit = screen.getByTestId('Edit')
+		const edit = screen.getByTestId('ManageUserEdit')
 		expect(edit).toBeInTheDocument()
 	})
 
-	test('Edit snapshot', () => {
+	test('ManageUserEdit snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Edit />
-				</BrowserRouter>,
+				<Provider store={store}>
+					<BrowserRouter>
+						<Edit />
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})

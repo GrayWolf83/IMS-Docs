@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="chakra-table__container css-0"
+        class="chakra-table__container css-1bfpiw8"
         data-testid="TableHead"
       >
         <table
@@ -39,7 +39,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="chakra-table__container css-0"
+      class="chakra-table__container css-1bfpiw8"
       data-testid="TableHead"
     >
       <table

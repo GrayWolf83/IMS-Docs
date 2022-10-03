@@ -8,11 +8,11 @@ import store from '../../../../store'
 describe('ManageSystemAdd page', () => {
 	test('ManageSystemAdd render', () => {
 		render(
-			<BrowserRouter>
-				<Provider store={store}>
+			<Provider store={store}>
+				<BrowserRouter>
 					<Add />
-				</Provider>
-			</BrowserRouter>,
+				</BrowserRouter>
+			</Provider>,
 		)
 
 		const add = screen.getByTestId('ManageSystemAdd')
@@ -22,11 +22,11 @@ describe('ManageSystemAdd page', () => {
 	test('ManageSystemAdd snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Provider store={store}>
+				<Provider store={store}>
+					<BrowserRouter>
 						<Add />
-					</Provider>
-				</BrowserRouter>,
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})

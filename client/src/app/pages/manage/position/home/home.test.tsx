@@ -8,11 +8,11 @@ import store from '../../../../store'
 describe('ManagePositionHome page', () => {
 	test('ManagePositionHome render', () => {
 		render(
-			<BrowserRouter>
-				<Provider store={store}>
+			<Provider store={store}>
+				<BrowserRouter>
 					<Home />
-				</Provider>
-			</BrowserRouter>,
+				</BrowserRouter>
+			</Provider>,
 		)
 
 		const home = screen.getByTestId('ManagePositionHome')
@@ -22,11 +22,11 @@ describe('ManagePositionHome page', () => {
 	test('ManagePositionHome snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Provider store={store}>
+				<Provider store={store}>
+					<BrowserRouter>
 						<Home />
-					</Provider>
-				</BrowserRouter>,
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})

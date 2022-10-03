@@ -2,25 +2,31 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import Famil from './famil'
+import { Provider } from 'react-redux'
+import store from '../../../store'
 
-describe('Famil page', () => {
-	test('Famil render', () => {
+describe('ClientFamil page', () => {
+	test('ClientFamil render', () => {
 		render(
-			<BrowserRouter>
-				<Famil />
-			</BrowserRouter>,
+			<Provider store={store}>
+				<BrowserRouter>
+					<Famil />
+				</BrowserRouter>
+			</Provider>,
 		)
 
-		const famil = screen.getByTestId('Famil')
+		const famil = screen.getByTestId('ClientFamil')
 		expect(famil).toBeInTheDocument()
 	})
 
-	test('Famil snapshot', () => {
+	test('ClientFamil snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Famil />
-				</BrowserRouter>,
+				<Provider store={store}>
+					<BrowserRouter>
+						<Famil />
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})

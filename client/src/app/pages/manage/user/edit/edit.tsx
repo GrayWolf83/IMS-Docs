@@ -37,7 +37,7 @@ const Edit: React.FC<IEdit> = () => {
 	}
 
 	return (
-		<Box data-testid='Edit'>
+		<Box data-testid='ManageUserEdit'>
 			<PageTitle
 				title={`Редактирование ${user.name}`}
 				backPath='/manage/user'

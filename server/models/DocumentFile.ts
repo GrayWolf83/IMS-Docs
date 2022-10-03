@@ -1,7 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize')
 import DB from '../utils/database'
 import Document from './Document'
-import File from './File'
 
 const DocumentFile = DB.define('DocumentFile', {
 	id: {
@@ -16,21 +15,19 @@ const DocumentFile = DB.define('DocumentFile', {
 			key: 'id',
 		},
 	},
-	file: {
-		type: DataTypes.UUID,
-		references: {
-			model: File,
-			key: 'id',
-		},
+	language: {
+		type: DataTypes.ENUM('ru', 'kz', 'en'),
+		defaultValue: 'User',
+		allowNull: false,
+	},
+	path: {
+		type: DataTypes.STRING,
+		allowNull: false,
 	},
 })
 
 DocumentFile.belongsTo(Document, {
 	foreignKey: 'document',
-})
-
-DocumentFile.belongsTo(File, {
-	foreignKey: 'file',
 })
 
 export default DocumentFile

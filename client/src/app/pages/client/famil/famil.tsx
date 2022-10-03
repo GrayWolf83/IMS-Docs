@@ -6,7 +6,7 @@ interface IFamil {}
 
 const Famil: React.FC<IFamil> = () => {
 	return (
-		<Box mt={3} data-testid='Famil'>
+		<Box mt={3} data-testid='ClientFamil'>
 			<PageTitle title='Ознакомление' backPath='/' />
 		</Box>
 	)

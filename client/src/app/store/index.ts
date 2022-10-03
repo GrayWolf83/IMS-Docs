@@ -5,6 +5,7 @@ import systemReducer from './system'
 import departmentReducer from './department'
 import positionReducer from './position'
 import userReducer from './user'
+import documentTypesReducer from './documentType'
 
 const store = configureStore({
 	reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
 		departments: departmentReducer,
 		positions: positionReducer,
 		users: userReducer,
+		documentTypes: documentTypesReducer,
 	},
 })
 

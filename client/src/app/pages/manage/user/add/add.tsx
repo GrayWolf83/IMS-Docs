@@ -26,7 +26,7 @@ const Add: React.FC<IAdd> = () => {
 	}
 
 	return (
-		<Box data-testid='Add' mt={3}>
+		<Box data-testid='ManageUserAdd' mt={3}>
 			<PageTitle title='Новый пользователь' backPath='/manage/user' />
 			<UserForm onSubmit={handleSubmit} />
 		</Box>

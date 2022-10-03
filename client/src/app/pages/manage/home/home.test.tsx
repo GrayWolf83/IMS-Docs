@@ -1,13 +1,17 @@
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import Home from './home'
+import { Provider } from 'react-redux'
+import store from '../../../store'
 
 describe('ManageHome page', () => {
 	test('ManageHome render', () => {
 		render(
-			<BrowserRouter>
-				<Home />
-			</BrowserRouter>,
+			<Provider store={store}>
+				<BrowserRouter>
+					<Home />
+				</BrowserRouter>
+			</Provider>,
 		)
 
 		const home = screen.getByTestId('ManageHome')
@@ -17,9 +21,11 @@ describe('ManageHome page', () => {
 	test('ManageHome snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Home />
-				</BrowserRouter>,
+				<Provider store={store}>
+					<BrowserRouter>
+						<Home />
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})

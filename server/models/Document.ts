@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize')
 import DB from '../utils/database'
 import Department from './Department'
+import DocumentType from './DocumentType'
 import System from './System'
 
 const Document = DB.define('Document', {
@@ -35,6 +36,13 @@ const Document = DB.define('Document', {
 			key: 'id',
 		},
 	},
+	type: {
+		type: DataTypes.UUID,
+		references: {
+			model: DocumentType,
+			key: 'id',
+		},
+	},
 })
 
 Document.belongsTo(Department, {
@@ -43,6 +51,10 @@ Document.belongsTo(Department, {
 
 Document.belongsTo(System, {
 	foreignKey: 'system',
+})
+
+Document.belongsTo(DocumentType, {
+	foreignKey: 'type',
 })
 
 export default Document

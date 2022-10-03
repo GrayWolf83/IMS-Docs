@@ -19,7 +19,7 @@ const Home: React.FC<IHome> = () => {
 	}, [dispatch])
 
 	return (
-		<Box data-testid='Home' mt={3}>
+		<Box data-testid='ClientHome' mt={3}>
 			<AppMenuList>
 				{Boolean(systems.length) &&
 					systems.map((system) => (

@@ -5,28 +5,28 @@ import Home from './home'
 import { Provider } from 'react-redux'
 import store from '../../../../store'
 
-describe('SystemHome page', () => {
-	test('SystemHome render', () => {
+describe('ManageUserHome page', () => {
+	test('ManageUserHome render', () => {
 		render(
-			<BrowserRouter>
-				<Provider store={store}>
+			<Provider store={store}>
+				<BrowserRouter>
 					<Home />
-				</Provider>
-			</BrowserRouter>,
+				</BrowserRouter>
+			</Provider>,
 		)
 
-		const home = screen.getByTestId('SystemHome')
+		const home = screen.getByTestId('ManageUserHome')
 		expect(home).toBeInTheDocument()
 	})
 
-	test('SystemHome snapshot', () => {
+	test('ManageUserHome snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Provider store={store}>
+				<Provider store={store}>
+					<BrowserRouter>
 						<Home />
-					</Provider>
-				</BrowserRouter>,
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})

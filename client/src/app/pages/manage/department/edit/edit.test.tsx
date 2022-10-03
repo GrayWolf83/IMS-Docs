@@ -8,11 +8,11 @@ import store from '../../../../store'
 describe('ManageDepartmentEdit page', () => {
 	test('ManageDepartmentEdit render', () => {
 		render(
-			<BrowserRouter>
-				<Provider store={store}>
+			<Provider store={store}>
+				<BrowserRouter>
 					<Edit />
-				</Provider>
-			</BrowserRouter>,
+				</BrowserRouter>
+			</Provider>,
 		)
 
 		const edit = screen.getByTestId('ManageDepartmentEdit')
@@ -22,11 +22,11 @@ describe('ManageDepartmentEdit page', () => {
 	test('ManageDepartmentEdit snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Provider store={store}>
+				<Provider store={store}>
+					<BrowserRouter>
 						<Edit />
-					</Provider>
-				</BrowserRouter>,
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})
