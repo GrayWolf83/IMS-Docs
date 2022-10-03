@@ -7,7 +7,7 @@ import mailService from '../../services/mail.service'
 import { getMailHtml } from '../../utils/getMailHtml'
 import Token from '../../models/Token'
 import TestResult from '../../models/TestResult'
-const generator = require('generate-password')
+import { generatePassword } from '../../utils/generatePassword'
 
 const router = express.Router()
 
@@ -44,12 +44,7 @@ router.post('/', async (req, res) => {
 
 		const newUser: IUser = await User.findOne({ where: { email } })
 
-		const password = generator.generate({
-			length: 10,
-			numbers: true,
-			symbols: true,
-			exclude: '".,:[]{}',
-		})
+		const password = generatePassword()
 
 		const hashedPass = await bcrypt.hash(password, 12)
 

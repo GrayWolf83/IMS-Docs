@@ -6,21 +6,161 @@ Object {
   "baseElement": <body>
     <div>
       <div
+        class="css-0"
         data-testid="SystemForm"
       >
-        <h2>
-          SystemForm
-        </h2>
+        <div
+          class="css-0"
+          data-testid="FormComponent"
+        >
+          <form
+            enctype="multipart/form-data"
+            style="width: 100%;"
+          >
+            <div
+              class="chakra-form-control css-0"
+              data-testid="TextField"
+              role="group"
+            >
+              <label
+                class="chakra-form__label css-0"
+                for="field-:r2:"
+                id="field-:r2:-label"
+              >
+                Сокращение
+              </label>
+              <div
+                class="css-0"
+              >
+                <input
+                  autocomplete="name"
+                  class="chakra-input css-0"
+                  id="field-:r2:"
+                  name="name"
+                  placeholder="Сокращение"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="chakra-form-control css-0"
+              data-testid="TextField"
+              role="group"
+            >
+              <label
+                class="chakra-form__label css-0"
+                for="field-:r3:"
+                id="field-:r3:-label"
+              >
+                Полное наименование
+              </label>
+              <div
+                class="css-0"
+              >
+                <input
+                  autocomplete="fullName"
+                  class="chakra-input css-0"
+                  id="field-:r3:"
+                  name="fullName"
+                  placeholder="Полное наименование"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="css-0"
+            >
+              <button
+                class="chakra-button css-0"
+                type="submit"
+              >
+                Сохранить
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
+      class="css-0"
       data-testid="SystemForm"
     >
-      <h2>
-        SystemForm
-      </h2>
+      <div
+        class="css-0"
+        data-testid="FormComponent"
+      >
+        <form
+          enctype="multipart/form-data"
+          style="width: 100%;"
+        >
+          <div
+            class="chakra-form-control css-0"
+            data-testid="TextField"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-0"
+              for="field-:r2:"
+              id="field-:r2:-label"
+            >
+              Сокращение
+            </label>
+            <div
+              class="css-0"
+            >
+              <input
+                autocomplete="name"
+                class="chakra-input css-0"
+                id="field-:r2:"
+                name="name"
+                placeholder="Сокращение"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="chakra-form-control css-0"
+            data-testid="TextField"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-0"
+              for="field-:r3:"
+              id="field-:r3:-label"
+            >
+              Полное наименование
+            </label>
+            <div
+              class="css-0"
+            >
+              <input
+                autocomplete="fullName"
+                class="chakra-input css-0"
+                id="field-:r3:"
+                name="fullName"
+                placeholder="Полное наименование"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="css-0"
+          >
+            <button
+              class="chakra-button css-0"
+              type="submit"
+            >
+              Сохранить
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>,
   "debug": [Function],

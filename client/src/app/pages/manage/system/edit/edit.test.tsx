@@ -7,11 +7,11 @@ import store from '../../../../store'
 describe('MangeSystemEdit page', () => {
 	test('MangeSystemEdit render', () => {
 		render(
-			<BrowserRouter>
-				<Provider store={store}>
+			<Provider store={store}>
+				<BrowserRouter>
 					<Edit />
-				</Provider>
-			</BrowserRouter>,
+				</BrowserRouter>
+			</Provider>,
 		)
 
 		const edit = screen.getByTestId('MangeSystemEdit')
@@ -21,11 +21,11 @@ describe('MangeSystemEdit page', () => {
 	test('MangeSystemEdit snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Provider store={store}>
+				<Provider store={store}>
+					<BrowserRouter>
 						<Edit />
-					</Provider>
-				</BrowserRouter>,
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})

@@ -1,5 +1,22 @@
 import * as yup from 'yup'
 
+export const DocumentTypeSchema = yup.object().shape({
+	description: yup
+		.string()
+		.required({
+			name: 'Описание',
+			text: 'Поле "Индекс" обязательно для заполнения',
+		})
+		.trim(),
+	index: yup
+		.string()
+		.required({
+			name: 'index',
+			text: 'Поле "Индекс" обязательно для заполнения',
+		})
+		.trim(),
+})
+
 export const UserSchema = yup.object().shape({
 	email: yup
 		.string()

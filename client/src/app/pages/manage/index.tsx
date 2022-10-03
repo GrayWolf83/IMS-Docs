@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import ProtectedManage from '../../components/ProtectedManage'
 import MainLayout from '../../layouts/main'
 import Department from './department'
+import DocumentType from './documentType'
 import Home from './home'
 import Position from './position'
 import System from './system'
@@ -18,6 +19,7 @@ const Manage: React.FC = () => {
 					<Route path='department/*' element={<Department />} />
 					<Route path='position/*' element={<Position />} />
 					<Route path='user/*' element={<User />} />
+					<Route path='documentType/*' element={<DocumentType />} />
 					<Route path='*' element={<Navigate to='/' />} />
 				</Route>
 			</Routes>

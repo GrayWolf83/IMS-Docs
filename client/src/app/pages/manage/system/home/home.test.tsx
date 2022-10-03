@@ -8,11 +8,11 @@ import store from '../../../../store'
 describe('SystemHome page', () => {
 	test('SystemHome render', () => {
 		render(
-			<BrowserRouter>
-				<Provider store={store}>
+			<Provider store={store}>
+				<BrowserRouter>
 					<Home />
-				</Provider>
-			</BrowserRouter>,
+				</BrowserRouter>
+			</Provider>,
 		)
 
 		const home = screen.getByTestId('SystemHome')
@@ -22,11 +22,11 @@ describe('SystemHome page', () => {
 	test('SystemHome snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Provider store={store}>
+				<Provider store={store}>
+					<BrowserRouter>
 						<Home />
-					</Provider>
-				</BrowserRouter>,
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})

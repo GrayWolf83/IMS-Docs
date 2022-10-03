@@ -1,14 +1,17 @@
-import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import Book from './book'
+import { Provider } from 'react-redux'
+import store from '../../../store'
 
 describe('Book page', () => {
 	test('Book render', () => {
 		render(
-			<BrowserRouter>
-				<Book />
-			</BrowserRouter>,
+			<Provider store={store}>
+				<BrowserRouter>
+					<Book />
+				</BrowserRouter>
+			</Provider>,
 		)
 
 		const book = screen.getByTestId('Book')
@@ -18,9 +21,11 @@ describe('Book page', () => {
 	test('Book snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Book />
-				</BrowserRouter>,
+				<Provider store={store}>
+					<BrowserRouter>
+						<Book />
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})

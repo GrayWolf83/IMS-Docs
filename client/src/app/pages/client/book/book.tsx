@@ -4,7 +4,6 @@ import TextField from '../../../components/form/TextField'
 import PageTitle from '../../../components/PageTitle'
 import TableHead from '../../../components/TableHead'
 import { useAppDispatch, useAppSelector } from '../../../hooks/useAppReduxHooks'
-import useColor from '../../../hooks/useColor'
 import {
 	getDepartmentsList,
 	loadDepartmentList,
@@ -19,7 +18,6 @@ const Book: React.FC<IBook> = () => {
 	const users = useAppSelector(getUsersList())
 	const departments = useAppSelector(getDepartmentsList())
 	const positions = useAppSelector(getPositionsList())
-	const { dark } = useColor()
 	const [search, setSearch] = React.useState<string>('')
 
 	React.useEffect(() => {
@@ -37,9 +35,11 @@ const Book: React.FC<IBook> = () => {
 		setSearch(Object.values(value)[0])
 	}
 
-	const searchedUsers = users.filter((user) =>
-		user.name.toLowerCase().includes(search.toLowerCase()),
-	)
+	const searchedUsers = users.length
+		? users.filter((user) =>
+				user.name.toLowerCase().includes(search.toLowerCase()),
+		  )
+		: []
 
 	return (
 		<Box mt={3} data-testid='Book'>
@@ -62,8 +62,7 @@ const Book: React.FC<IBook> = () => {
 								<React.Fragment key={depart.id}>
 									<Tr
 										fontSize='18px'
-										css={{ td: { padding: 7 } }}
-										bg={dark}>
+										css={{ td: { padding: 7 } }}>
 										<Th colSpan={6}>{depart.fullName}</Th>
 									</Tr>
 									{depUsers.map((user) => (

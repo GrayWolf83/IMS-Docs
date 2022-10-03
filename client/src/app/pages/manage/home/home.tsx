@@ -40,6 +40,12 @@ const Home: React.FC<IManageHome> = () => {
 						fullName='Список пользователей'
 					/>
 					<AppMenuItem
+						path='documentType'
+						name='Типы документов'
+						Icon={HiDocumentDuplicate}
+						fullName='Список типов документов'
+					/>
+					<AppMenuItem
 						path='document'
 						name='Документы'
 						Icon={HiDocumentDuplicate}

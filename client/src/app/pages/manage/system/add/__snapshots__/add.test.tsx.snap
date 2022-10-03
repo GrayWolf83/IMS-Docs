@@ -11,6 +11,7 @@ Object {
       >
         <div
           class="css-0"
+          data-testid="PageTitle"
         >
           <button
             aria-label=""
@@ -41,6 +42,128 @@ Object {
             Новая система
           </h3>
         </div>
+        <div
+          class="css-0"
+          data-testid="SystemForm"
+        >
+          <div
+            class="css-0"
+            data-testid="FormComponent"
+          >
+            <form
+              enctype="multipart/form-data"
+              style="width: 100%;"
+            >
+              <div
+                class="chakra-form-control css-0"
+                data-testid="TextField"
+                role="group"
+              >
+                <label
+                  class="chakra-form__label css-0"
+                  for="field-:r2:"
+                  id="field-:r2:-label"
+                >
+                  Сокращение
+                </label>
+                <div
+                  class="css-0"
+                >
+                  <input
+                    autocomplete="name"
+                    class="chakra-input css-0"
+                    id="field-:r2:"
+                    name="name"
+                    placeholder="Сокращение"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                class="chakra-form-control css-0"
+                data-testid="TextField"
+                role="group"
+              >
+                <label
+                  class="chakra-form__label css-0"
+                  for="field-:r3:"
+                  id="field-:r3:-label"
+                >
+                  Полное наименование
+                </label>
+                <div
+                  class="css-0"
+                >
+                  <input
+                    autocomplete="fullName"
+                    class="chakra-input css-0"
+                    id="field-:r3:"
+                    name="fullName"
+                    placeholder="Полное наименование"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                class="css-0"
+              >
+                <button
+                  class="chakra-button css-0"
+                  type="submit"
+                >
+                  Сохранить
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="css-0"
+      data-testid="ManageSystemAdd"
+    >
+      <div
+        class="css-0"
+        data-testid="PageTitle"
+      >
+        <button
+          aria-label=""
+          class="chakra-button css-0"
+          data-testid="NavigateButton"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 10 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 3L0 8l6 5v-3h4V6H6V3z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <h3
+          class="chakra-heading css-0"
+        >
+          Новая система
+        </h3>
+      </div>
+      <div
+        class="css-0"
+        data-testid="SystemForm"
+      >
         <div
           class="css-0"
           data-testid="FormComponent"
@@ -108,122 +231,11 @@ Object {
                 class="chakra-button css-0"
                 type="submit"
               >
-                Добавить
+                Сохранить
               </button>
             </div>
           </form>
         </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="css-0"
-      data-testid="ManageSystemAdd"
-    >
-      <div
-        class="css-0"
-      >
-        <button
-          aria-label=""
-          class="chakra-button css-0"
-          data-testid="NavigateButton"
-          type="button"
-        >
-          <svg
-            aria-hidden="true"
-            fill="currentColor"
-            focusable="false"
-            height="1em"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 10 16"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M6 3L0 8l6 5v-3h4V6H6V3z"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>
-        <h3
-          class="chakra-heading css-0"
-        >
-          Новая система
-        </h3>
-      </div>
-      <div
-        class="css-0"
-        data-testid="FormComponent"
-      >
-        <form
-          enctype="multipart/form-data"
-          style="width: 100%;"
-        >
-          <div
-            class="chakra-form-control css-0"
-            data-testid="TextField"
-            role="group"
-          >
-            <label
-              class="chakra-form__label css-0"
-              for="field-:r2:"
-              id="field-:r2:-label"
-            >
-              Сокращение
-            </label>
-            <div
-              class="css-0"
-            >
-              <input
-                autocomplete="name"
-                class="chakra-input css-0"
-                id="field-:r2:"
-                name="name"
-                placeholder="Сокращение"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-          <div
-            class="chakra-form-control css-0"
-            data-testid="TextField"
-            role="group"
-          >
-            <label
-              class="chakra-form__label css-0"
-              for="field-:r3:"
-              id="field-:r3:-label"
-            >
-              Полное наименование
-            </label>
-            <div
-              class="css-0"
-            >
-              <input
-                autocomplete="fullName"
-                class="chakra-input css-0"
-                id="field-:r3:"
-                name="fullName"
-                placeholder="Полное наименование"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-          <div
-            class="css-0"
-          >
-            <button
-              class="chakra-button css-0"
-              type="submit"
-            >
-              Добавить
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   </div>,

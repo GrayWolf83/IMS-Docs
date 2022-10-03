@@ -17,7 +17,6 @@ import {
 } from '../../../../store/department'
 import { getPositionsList, loadPositionsList } from '../../../../store/position'
 import { IUser } from '../../../../types/user'
-import useColor from '../../../../hooks/useColor'
 
 interface ISystemProps {}
 
@@ -32,7 +31,6 @@ const Home: React.FC<ISystemProps> = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const [deleted, setDeleted] = React.useState<IUser | null>()
 	const dispatch = useAppDispatch()
-	const { dark } = useColor()
 
 	const deleteHandler = (id: string) => {
 		dispatch(deleteUser(id))
@@ -50,7 +48,7 @@ const Home: React.FC<ISystemProps> = () => {
 	}, [dispatch])
 
 	return (
-		<Box data-testid='SystemHome' mt={3}>
+		<Box data-testid='ManageUserHome' mt={3}>
 			<PageTitle
 				title='Список пользователей'
 				backPath='/manage'
@@ -75,8 +73,7 @@ const Home: React.FC<ISystemProps> = () => {
 								<React.Fragment key={depart.id}>
 									<Tr
 										fontSize='18px'
-										css={{ td: { padding: 7 } }}
-										bg={dark}>
+										css={{ td: { padding: 7 } }}>
 										<Th colSpan={6}>{depart.fullName}</Th>
 									</Tr>
 									{depUsers.map((user) => (
@@ -117,8 +114,7 @@ const Home: React.FC<ISystemProps> = () => {
 							<>
 								<Tr
 									fontSize='18px'
-									css={{ td: { padding: 7 } }}
-									bg={dark}>
+									css={{ td: { padding: 7 } }}>
 									<Th colSpan={6}>Без подразделения</Th>
 								</Tr>
 								{notDepartmentUsers.map((user) => (

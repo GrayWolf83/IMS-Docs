@@ -1,14 +1,17 @@
-import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import Edit from './edit'
+import { Provider } from 'react-redux'
+import store from '../../../../store'
 
 describe('Edit page', () => {
 	test('Edit render', () => {
 		render(
-			<BrowserRouter>
-				<Edit />
-			</BrowserRouter>,
+			<Provider store={store}>
+				<BrowserRouter>
+					<Edit />
+				</BrowserRouter>
+			</Provider>,
 		)
 
 		const edit = screen.getByTestId('Edit')
@@ -18,9 +21,11 @@ describe('Edit page', () => {
 	test('Edit snapshot', () => {
 		expect(
 			render(
-				<BrowserRouter>
-					<Edit />
-				</BrowserRouter>,
+				<Provider store={store}>
+					<BrowserRouter>
+						<Edit />
+					</BrowserRouter>
+				</Provider>,
 			),
 		).toMatchSnapshot()
 	})

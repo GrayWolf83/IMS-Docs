@@ -1,16 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SystemHome page SystemHome snapshot 1`] = `
+exports[`ManageUserHome page ManageUserHome snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
         class="css-0"
-        data-testid="SystemHome"
+        data-testid="ManageUserHome"
       >
         <div
           class="css-0"
+          data-testid="PageTitle"
         >
           <button
             aria-label=""
@@ -38,7 +39,7 @@ Object {
           <h3
             class="chakra-heading css-0"
           >
-            Системы менеджмента
+            Список пользователей
           </h3>
           <button
             aria-label=""
@@ -69,10 +70,11 @@ Object {
   "container": <div>
     <div
       class="css-0"
-      data-testid="SystemHome"
+      data-testid="ManageUserHome"
     >
       <div
         class="css-0"
+        data-testid="PageTitle"
       >
         <button
           aria-label=""
@@ -100,7 +102,7 @@ Object {
         <h3
           class="chakra-heading css-0"
         >
-          Системы менеджмента
+          Список пользователей
         </h3>
         <button
           aria-label=""
