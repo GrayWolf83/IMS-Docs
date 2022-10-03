@@ -11,6 +11,7 @@ import DeleteDialog from '../../../../components/DeleteDialog'
 import PageTitle from '../../../../components/PageTitle'
 import { deleteUser, getUsersList, loadUsersList } from '../../../../store/user'
 import {
+	getDefaultDepartment,
 	getDepartmentsList,
 	loadDepartmentList,
 } from '../../../../store/department'
@@ -24,6 +25,10 @@ const Home: React.FC<ISystemProps> = () => {
 	const users = useAppSelector(getUsersList())
 	const departments = useAppSelector(getDepartmentsList())
 	const positions = useAppSelector(getPositionsList())
+	const defaultDepartment = useAppSelector(getDefaultDepartment())
+	const notDepartmentUsers = users.filter(
+		(user) => user.department === defaultDepartment?.id,
+	)
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const [deleted, setDeleted] = React.useState<IUser | null>()
 	const dispatch = useAppDispatch()
@@ -108,6 +113,48 @@ const Home: React.FC<ISystemProps> = () => {
 								</React.Fragment>
 							) : null
 						})}
+						{Boolean(notDepartmentUsers.length) && (
+							<>
+								<Tr
+									fontSize='18px'
+									css={{ td: { padding: 7 } }}
+									bg={dark}>
+									<Th colSpan={6}>Без подразделения</Th>
+								</Tr>
+								{notDepartmentUsers.map((user) => (
+									<Tr
+										key={user.id}
+										fontSize='18px'
+										css={{ td: { padding: 7 } }}>
+										<Td>{user.name}</Td>
+										<Td>
+											{getUserPosition(user.position) ||
+												'Должность не указана'}
+										</Td>
+										<Td>{user.phone}</Td>
+										<Td>{user.email}</Td>
+										<Td>
+											{user.role === 'User'
+												? 'Пользователь'
+												: 'Менеджер'}
+										</Td>
+										<Td>
+											<NavigateButton
+												path={`edit/${user.id}`}
+												Icon={FaEdit}
+											/>
+											<NavigateButton
+												onClick={() => {
+													setDeleted(user)
+													onOpen()
+												}}
+												Icon={FaTrash}
+											/>
+										</Td>
+									</Tr>
+								))}
+							</>
+						)}
 					</Tbody>
 				</TableHead>
 			)}
