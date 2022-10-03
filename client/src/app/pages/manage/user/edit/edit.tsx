@@ -38,7 +38,10 @@ const Edit: React.FC<IEdit> = () => {
 
 	return (
 		<Box data-testid='Edit'>
-			<PageTitle title='Редактирование' backPath='/manage/user' />
+			<PageTitle
+				title={`Редактирование ${user.name}`}
+				backPath='/manage/user'
+			/>
 			<UserForm onSubmit={handleSubmit} initialData={{ ...user }} />
 		</Box>
 	)

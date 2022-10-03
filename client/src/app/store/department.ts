@@ -118,4 +118,8 @@ export const getDepartmentById = (id: string) => (state: RootState) => {
 	return state.departments.entities.find((item) => item.id === id)
 }
 
+export const getDefaultDepartment = () => (state: RootState) => {
+	return state.departments.entities.find((item) => item.index === 0)
+}
+
 export default departmentSlice.reducer
