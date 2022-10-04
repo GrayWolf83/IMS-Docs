@@ -6,3 +6,4 @@ server/.env
 server/build
 server/.eslintcache
 .idea
+.DS_Store

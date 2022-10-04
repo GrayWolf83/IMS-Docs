@@ -1,10 +1,62 @@
 import * as yup from 'yup'
 
+export const DocumentSchema = yup.object().shape({
+	familiarity: yup
+		.array()
+		.required({
+			name: 'familiarity',
+			text: 'Поле "Ознакомление" обязательно для заполнения',
+		})
+		.min(1, {
+			name: 'familiarity',
+			text: 'Поле "Ознакомление" обязательно для заполнения',
+		}),
+	type: yup
+		.string()
+		.required({
+			name: 'type',
+			text: 'Поле "Тип" обязательно для заполнения',
+		})
+		.trim(),
+	system: yup
+		.string()
+		.required({
+			name: 'system',
+			text: 'Поле "Система" обязательно для заполнения',
+		})
+		.trim(),
+	owner: yup
+		.string()
+		.required({
+			name: 'owner',
+			text: 'Поле "Владелец" обязательно для заполнения',
+		})
+		.trim(),
+	name: yup
+		.string()
+		.required({
+			name: 'name',
+			text: 'Поле "Наименование" обязательно для заполнения',
+		})
+		.trim(),
+	number: yup
+		.string()
+		.required({
+			name: 'number',
+			text: 'Поле "Номер" обязательно для заполнения',
+		})
+		.trim(),
+	index: yup.number().required({
+		name: 'index',
+		text: 'Поле "Индекс" обязательно для заполнения',
+	}),
+})
+
 export const DocumentTypeSchema = yup.object().shape({
 	description: yup
 		.string()
 		.required({
-			name: 'Описание',
+			name: 'description',
 			text: 'Поле "Индекс" обязательно для заполнения',
 		})
 		.trim(),
