@@ -6,6 +6,7 @@ import departmentReducer from './department'
 import positionReducer from './position'
 import userReducer from './user'
 import documentTypesReducer from './documentType'
+import documentReducer from './document'
 
 const store = configureStore({
 	reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
 		positions: positionReducer,
 		users: userReducer,
 		documentTypes: documentTypesReducer,
+		documents: documentReducer,
 	},
 })
 
