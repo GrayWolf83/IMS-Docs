@@ -19,32 +19,31 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		authLoginSuccess(state, action: PayloadAction<IUser>) {
+		loginSuccess(state, action: PayloadAction<IUser>) {
 			state.currentUser = action.payload
 		},
-		authLogout(state) {
+		Logout(state) {
 			state.currentUser = null
 		},
-		authLoadingStart(state) {
+		loadingStart(state) {
 			state.isLoading = true
 		},
-		authLoadingEnd(state) {
+		loadingEnd(state) {
 			state.isLoading = false
 		},
 	},
 })
 
-const { authLoginSuccess, authLoadingStart, authLoadingEnd, authLogout } =
-	authSlice.actions
+const { loginSuccess, loadingStart, loadingEnd, Logout } = authSlice.actions
 
 export const login =
 	(data: { email: string; password: string }) =>
 	async (dispatch: AppDispatch) => {
-		dispatch(authLoadingStart())
+		dispatch(loadingStart())
 
 		try {
 			const payload = await authService.login(data)
-			dispatch(authLoginSuccess(payload.user))
+			dispatch(loginSuccess(payload.user))
 
 			localStorageService.setTokens({
 				...payload,
@@ -52,19 +51,19 @@ export const login =
 		} catch (error) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(authLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 
 export const autologin = () => async (dispatch: AppDispatch) => {
-	dispatch(authLoadingStart())
+	dispatch(loadingStart())
 	try {
 		const payload = await authService.refresh()
 
 		if (!payload?.refreshToken || !payload?.accessToken) {
 			localStorageService.removeAuthData()
 		} else {
-			dispatch(authLoginSuccess(payload.user))
+			dispatch(loginSuccess(payload.user))
 
 			localStorageService.setTokens({
 				...payload,
@@ -73,13 +72,13 @@ export const autologin = () => async (dispatch: AppDispatch) => {
 	} catch (error: any) {
 		dispatch(setLoadingError(error))
 	} finally {
-		dispatch(authLoadingEnd())
+		dispatch(loadingEnd())
 	}
 }
 
 export const logout = () => async (dispatch: AppDispatch) => {
 	localStorageService.removeAuthData()
-	dispatch(authLogout())
+	dispatch(Logout())
 }
 
 export const getCurrentUser = () => (state: RootState) => {

@@ -1,7 +1,7 @@
 import { setLoadingError } from './error'
 import { AppDispatch, RootState } from './index'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ISystem } from '../types/system'
+import { INewSystem, ISystem } from '../types/system'
 import systemService from '../services/system.service'
 
 type state = {
@@ -18,91 +18,84 @@ const systemSlice = createSlice({
 	name: 'systems',
 	initialState,
 	reducers: {
-		systemsLoaded(state, action: PayloadAction<ISystem[]>) {
+		loaded(state, action: PayloadAction<ISystem[]>) {
 			state.entities = action.payload
 		},
-		systemAdded(state, action: PayloadAction<ISystem>) {
+		added(state, action: PayloadAction<ISystem>) {
 			state.entities = [action.payload, ...state.entities]
 		},
-		systemEdited(state, action: PayloadAction<ISystem>) {
+		edited(state, action: PayloadAction<ISystem>) {
 			state.entities = state.entities.map((item) => {
 				return item.id === action.payload.id ? action.payload : item
 			})
 		},
-		systemDeleted(state, action: PayloadAction<string>) {
+		deleted(state, action: PayloadAction<string>) {
 			state.entities = state.entities.filter(
 				(item) => item.id !== action.payload,
 			)
 		},
-		systemLoadingStart(state) {
+		loadingStart(state) {
 			state.isLoading = true
 		},
-		systemLoadingEnd(state) {
+		loadingEnd(state) {
 			state.isLoading = false
 		},
 	},
 })
 
-const {
-	systemsLoaded,
-	systemAdded,
-	systemEdited,
-	systemDeleted,
-	systemLoadingStart,
-	systemLoadingEnd,
-} = systemSlice.actions
+const { loaded, added, edited, deleted, loadingStart, loadingEnd } =
+	systemSlice.actions
 
 export const loadSystemsList = () => async (dispatch: AppDispatch) => {
-	dispatch(systemLoadingStart())
+	dispatch(loadingStart())
 
 	try {
 		const payload = await systemService.getList()
-		dispatch(systemsLoaded(payload))
+		dispatch(loaded(payload))
 	} catch (error) {
 		dispatch(setLoadingError(error))
 	} finally {
-		dispatch(systemLoadingEnd())
+		dispatch(loadingEnd())
 	}
 }
 
 export const addSystem =
-	(data: { name: string; fullName: string }) =>
-	async (dispatch: AppDispatch) => {
-		dispatch(systemLoadingStart())
+	(data: INewSystem) => async (dispatch: AppDispatch) => {
+		dispatch(loadingStart())
 		try {
 			const payload: ISystem = await systemService.add(data)
 
-			dispatch(systemAdded(payload))
+			dispatch(added(payload))
 		} catch (error: any) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(systemLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 
 export const editSystem = (data: ISystem) => async (dispatch: AppDispatch) => {
-	dispatch(systemLoadingStart())
+	dispatch(loadingStart())
 	try {
 		const payload: ISystem = await systemService.edit(data)
 
-		dispatch(systemEdited(payload))
+		dispatch(edited(payload))
 	} catch (error: any) {
 		dispatch(setLoadingError(error))
 	} finally {
-		dispatch(systemLoadingEnd())
+		dispatch(loadingEnd())
 	}
 }
 
 export const deleteSystem = (data: string) => async (dispatch: AppDispatch) => {
-	dispatch(systemLoadingStart())
+	dispatch(loadingStart())
 	try {
 		const payload: string = await systemService.delete(data)
 
-		dispatch(systemDeleted(payload))
+		dispatch(deleted(payload))
 	} catch (error: any) {
 		dispatch(setLoadingError(error))
 	} finally {
-		dispatch(systemLoadingEnd())
+		dispatch(loadingEnd())
 	}
 }
 

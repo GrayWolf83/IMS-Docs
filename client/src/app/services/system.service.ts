@@ -1,4 +1,4 @@
-import { ISystem } from '../types/system'
+import { INewSystem, ISystem } from '../types/system'
 import httpService from './http.service'
 
 const endpoint = 'system/'
@@ -8,7 +8,7 @@ const systemService = {
 		const { data } = await httpService.get(endpoint)
 		return data
 	},
-	add: async (payload: { name: string; fullName: string }) => {
+	add: async (payload: INewSystem) => {
 		const { data } = await httpService.post(endpoint, payload)
 
 		return data

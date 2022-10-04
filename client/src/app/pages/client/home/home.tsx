@@ -3,20 +3,15 @@ import React from 'react'
 import { FaListAlt } from 'react-icons/fa'
 import { GiRead } from 'react-icons/gi'
 import { CgListTree } from 'react-icons/cg'
+// import { IoMdInformationCircle } from 'react-icons/io'
 import AppMenuList from '../../../components/AppMenuList'
 import AppMenuItem from '../../../components/AppMenuItem'
-import { useAppDispatch, useAppSelector } from '../../../hooks/useAppReduxHooks'
-import { getSystemsList, loadSystemsList } from '../../../store/system'
+import useSystemsLoader from '../../../hooks/useSystemsLoader'
 
 interface IHome {}
 
 const Home: React.FC<IHome> = () => {
-	const dispatch = useAppDispatch()
-	const systems = useAppSelector(getSystemsList())
-
-	React.useEffect(() => {
-		dispatch(loadSystemsList())
-	}, [dispatch])
+	const systems = useSystemsLoader()
 
 	return (
 		<Box data-testid='ClientHome' mt={3}>
@@ -43,6 +38,12 @@ const Home: React.FC<IHome> = () => {
 					fullName='Ознакомление с ВНД'
 					Icon={GiRead}
 				/>
+				{/* <AppMenuItem
+					path='/information'
+					name='База знаний'
+					fullName='База знаний'
+					Icon={IoMdInformationCircle}
+				/> */}
 			</AppMenuList>
 		</Box>
 	)

@@ -14,11 +14,11 @@ const Document = DB.define('Document', {
 		type: DataTypes.INTEGER,
 		allowNull: false,
 	},
-	name: {
+	number: {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
-	version: {
+	name: {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},

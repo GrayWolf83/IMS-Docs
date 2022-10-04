@@ -1,7 +1,7 @@
 import { setLoadingError } from './error'
 import { AppDispatch, RootState } from './index'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IDepartment } from '../types/department'
+import { IDepartment, INewDepartment } from '../types/department'
 import departmentService from '../services/department.service'
 
 type state = {
@@ -18,93 +18,86 @@ const departmentSlice = createSlice({
 	name: 'departments',
 	initialState,
 	reducers: {
-		departmentsLoaded(state, action: PayloadAction<IDepartment[]>) {
+		loaded(state, action: PayloadAction<IDepartment[]>) {
 			state.entities = action.payload
 		},
-		departmentAdded(state, action: PayloadAction<IDepartment>) {
+		added(state, action: PayloadAction<IDepartment>) {
 			state.entities = [action.payload, ...state.entities]
 		},
-		departmentEdited(state, action: PayloadAction<IDepartment>) {
+		edited(state, action: PayloadAction<IDepartment>) {
 			state.entities = state.entities.map((item) => {
 				return item.id === action.payload.id ? action.payload : item
 			})
 		},
-		departmentDeleted(state, action: PayloadAction<string>) {
+		deleted(state, action: PayloadAction<string>) {
 			state.entities = state.entities.filter(
 				(item) => item.id !== action.payload,
 			)
 		},
-		departmentLoadingStart(state) {
+		loadingStart(state) {
 			state.isLoading = true
 		},
-		departmentLoadingEnd(state) {
+		loadingEnd(state) {
 			state.isLoading = false
 		},
 	},
 })
 
-const {
-	departmentsLoaded,
-	departmentAdded,
-	departmentEdited,
-	departmentDeleted,
-	departmentLoadingStart,
-	departmentLoadingEnd,
-} = departmentSlice.actions
+const { loaded, added, edited, deleted, loadingStart, loadingEnd } =
+	departmentSlice.actions
 
 export const loadDepartmentList = () => async (dispatch: AppDispatch) => {
-	dispatch(departmentLoadingStart())
+	dispatch(loadingStart())
 
 	try {
 		const payload = await departmentService.getList()
-		dispatch(departmentsLoaded(payload))
+		dispatch(loaded(payload))
 	} catch (error) {
 		dispatch(setLoadingError(error))
 	} finally {
-		dispatch(departmentLoadingEnd())
+		dispatch(loadingEnd())
 	}
 }
 
 export const addDepartment =
-	(data: { name: string; fullName: string; index: number }) =>
-	async (dispatch: AppDispatch) => {
-		dispatch(departmentLoadingStart())
+	(data: INewDepartment) => async (dispatch: AppDispatch) => {
+		dispatch(loadingStart())
 		try {
 			const payload: IDepartment = await departmentService.add(data)
 
-			dispatch(departmentAdded(payload))
+			dispatch(added(payload))
 		} catch (error: any) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(departmentLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 
 export const editDepartment =
 	(data: IDepartment) => async (dispatch: AppDispatch) => {
-		dispatch(departmentLoadingStart())
+		dispatch(loadingStart())
 		try {
 			const payload: IDepartment = await departmentService.edit(data)
 
-			dispatch(departmentEdited(payload))
+			dispatch(edited(payload))
 		} catch (error: any) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(departmentLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 
 export const deleteDepartment =
 	(data: string) => async (dispatch: AppDispatch) => {
-		dispatch(departmentLoadingStart())
+		dispatch(loadingStart())
 		try {
 			const payload: string = await departmentService.delete(data)
 
-			dispatch(departmentDeleted(payload))
+			dispatch(deleted(payload))
 		} catch (error: any) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(departmentLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 

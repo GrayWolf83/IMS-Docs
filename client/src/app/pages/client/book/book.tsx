@@ -1,30 +1,20 @@
-import { Box, Tbody, Td, Th, Tr } from '@chakra-ui/react'
 import React from 'react'
+import { Box, Tbody, Td, Th, Tr } from '@chakra-ui/react'
 import TextField from '../../../components/form/TextField'
 import PageTitle from '../../../components/PageTitle'
 import TableHead from '../../../components/TableHead'
-import { useAppDispatch, useAppSelector } from '../../../hooks/useAppReduxHooks'
-import {
-	getDepartmentsList,
-	loadDepartmentList,
-} from '../../../store/department'
-import { getPositionsList, loadPositionsList } from '../../../store/position'
-import { getUsersList, loadUsersList } from '../../../store/user'
+import useDepartmentsLoader from '../../../hooks/useDepartmentsLoader'
+import { IUser } from '../../../types/user'
+import usePositionsLoader from '../../../hooks/usePositionsLoader'
 
-interface IBook {}
+interface IBook {
+	users?: IUser[]
+}
 
-const Book: React.FC<IBook> = () => {
-	const dispatch = useAppDispatch()
-	const users = useAppSelector(getUsersList())
-	const departments = useAppSelector(getDepartmentsList())
-	const positions = useAppSelector(getPositionsList())
+const Book: React.FC<IBook> = ({ users }) => {
+	const departments = useDepartmentsLoader()
+	const positions = usePositionsLoader()
 	const [search, setSearch] = React.useState<string>('')
-
-	React.useEffect(() => {
-		dispatch(loadUsersList())
-		dispatch(loadDepartmentList())
-		dispatch(loadPositionsList())
-	}, [dispatch])
 
 	const getUserPosition = (id: string) => {
 		const pos = positions.find((item) => item.id === id)
@@ -35,7 +25,7 @@ const Book: React.FC<IBook> = () => {
 		setSearch(Object.values(value)[0])
 	}
 
-	const searchedUsers = users.length
+	const searchedUsers = users?.length
 		? users.filter((user) =>
 				user.name.toLowerCase().includes(search.toLowerCase()),
 		  )

@@ -9,25 +9,23 @@ import NavigateButton from '../../../../components/NavigateButton'
 import TableHead from '../../../../components/TableHead'
 import DeleteDialog from '../../../../components/DeleteDialog'
 import PageTitle from '../../../../components/PageTitle'
-import { deleteUser, getUsersList, loadUsersList } from '../../../../store/user'
-import {
-	getDefaultDepartment,
-	getDepartmentsList,
-	loadDepartmentList,
-} from '../../../../store/department'
-import { getPositionsList, loadPositionsList } from '../../../../store/position'
+import { deleteUser } from '../../../../store/user'
+import { getDefaultDepartment } from '../../../../store/department'
 import { IUser } from '../../../../types/user'
+import useUsersLoader from '../../../../hooks/useUsersLoader'
+import useDepartmentsLoader from '../../../../hooks/useDepartmentsLoader'
+import usePositionsLoader from '../../../../hooks/usePositionsLoader'
 
 interface ISystemProps {}
 
 const Home: React.FC<ISystemProps> = () => {
-	const users = useAppSelector(getUsersList())
-	const departments = useAppSelector(getDepartmentsList())
-	const positions = useAppSelector(getPositionsList())
+	const departments = useDepartmentsLoader()
+	const users = useUsersLoader()
+	const positions = usePositionsLoader()
 	const defaultDepartment = useAppSelector(getDefaultDepartment())
-	const notDepartmentUsers = users.filter(
-		(user) => user.department === defaultDepartment?.id,
-	)
+	const notDepartmentUsers = users?.length
+		? users.filter((user) => user.department === defaultDepartment?.id)
+		: []
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const [deleted, setDeleted] = React.useState<IUser | null>()
 	const dispatch = useAppDispatch()
@@ -41,12 +39,6 @@ const Home: React.FC<ISystemProps> = () => {
 		return pos?.name
 	}
 
-	React.useEffect(() => {
-		dispatch(loadUsersList())
-		dispatch(loadDepartmentList())
-		dispatch(loadPositionsList())
-	}, [dispatch])
-
 	return (
 		<Box data-testid='ManageUserHome' mt={3}>
 			<PageTitle
@@ -54,7 +46,7 @@ const Home: React.FC<ISystemProps> = () => {
 				backPath='/manage'
 				addButton={true}
 			/>
-			{Boolean(users.length) && (
+			{Boolean(users?.length) && (
 				<TableHead
 					titles={[
 						'Ф.И.О.',
@@ -66,9 +58,11 @@ const Home: React.FC<ISystemProps> = () => {
 					]}>
 					<Tbody>
 						{departments.map((depart) => {
-							const depUsers = users.filter(
-								(user) => user.department === depart.id,
-							)
+							const depUsers = users?.length
+								? users.filter(
+										(user) => user.department === depart.id,
+								  )
+								: []
 							return Boolean(depUsers.length) ? (
 								<React.Fragment key={depart.id}>
 									<Tr
