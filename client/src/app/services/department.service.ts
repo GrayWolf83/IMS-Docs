@@ -1,4 +1,4 @@
-import { IDepartment } from '../types/department'
+import { IDepartment, INewDepartment } from '../types/department'
 import httpService from './http.service'
 
 const endpoint = 'department/'
@@ -8,7 +8,7 @@ const departmentService = {
 		const { data } = await httpService.get(endpoint)
 		return data
 	},
-	add: async (payload: { name: string; fullName: string; index: number }) => {
+	add: async (payload: INewDepartment) => {
 		const { data } = await httpService.post(endpoint, payload)
 
 		return data

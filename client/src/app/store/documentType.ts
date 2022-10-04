@@ -18,92 +18,86 @@ const documentTypeSlice = createSlice({
 	name: 'documentTypes',
 	initialState,
 	reducers: {
-		documentTypesLoaded(state, action: PayloadAction<IDocumentType[]>) {
+		loaded(state, action: PayloadAction<IDocumentType[]>) {
 			state.entities = action.payload
 		},
-		documentTypeAdded(state, action: PayloadAction<IDocumentType>) {
+		added(state, action: PayloadAction<IDocumentType>) {
 			state.entities = [action.payload, ...state.entities]
 		},
-		documentTypeEdited(state, action: PayloadAction<IDocumentType>) {
+		edited(state, action: PayloadAction<IDocumentType>) {
 			state.entities = state.entities.map((item) => {
 				return item.id === action.payload.id ? action.payload : item
 			})
 		},
-		documentTypeDeleted(state, action: PayloadAction<string>) {
+		deleted(state, action: PayloadAction<string>) {
 			state.entities = state.entities.filter(
 				(item) => item.id !== action.payload,
 			)
 		},
-		documentTypeLoadingStart(state) {
+		loadingStart(state) {
 			state.isLoading = true
 		},
-		documentTypeLoadingEnd(state) {
+		loadingEnd(state) {
 			state.isLoading = false
 		},
 	},
 })
 
-const {
-	documentTypesLoaded,
-	documentTypeAdded,
-	documentTypeEdited,
-	documentTypeDeleted,
-	documentTypeLoadingStart,
-	documentTypeLoadingEnd,
-} = documentTypeSlice.actions
+const { loaded, added, edited, deleted, loadingStart, loadingEnd } =
+	documentTypeSlice.actions
 
 export const loadDocumentTypesList = () => async (dispatch: AppDispatch) => {
-	dispatch(documentTypeLoadingStart())
+	dispatch(loadingStart())
 
 	try {
 		const payload: IDocumentType[] = await documentTypeService.getList()
-		dispatch(documentTypesLoaded(payload))
+		dispatch(loaded(payload))
 	} catch (error) {
 		dispatch(setLoadingError(error))
 	} finally {
-		dispatch(documentTypeLoadingEnd())
+		dispatch(loadingEnd())
 	}
 }
 
 export const addDocumentType =
 	(data: INewDocumentType) => async (dispatch: AppDispatch) => {
-		dispatch(documentTypeLoadingStart())
+		dispatch(loadingStart())
 		try {
 			const payload: IDocumentType = await documentTypeService.add(data)
 
-			dispatch(documentTypeAdded(payload))
+			dispatch(added(payload))
 		} catch (error: any) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(documentTypeLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 
 export const editDocumentType =
 	(data: IDocumentType) => async (dispatch: AppDispatch) => {
-		dispatch(documentTypeLoadingStart())
+		dispatch(loadingStart())
 		try {
 			const payload: IDocumentType = await documentTypeService.edit(data)
 
-			dispatch(documentTypeEdited(payload))
+			dispatch(edited(payload))
 		} catch (error: any) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(documentTypeLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 
 export const deleteDocumentType =
 	(data: string) => async (dispatch: AppDispatch) => {
-		dispatch(documentTypeLoadingStart())
+		dispatch(loadingStart())
 		try {
 			const payload: string = await documentTypeService.delete(data)
 
-			dispatch(documentTypeDeleted(payload))
+			dispatch(deleted(payload))
 		} catch (error: any) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(documentTypeLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 

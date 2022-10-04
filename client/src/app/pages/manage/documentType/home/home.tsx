@@ -1,32 +1,22 @@
 import { Box, Tbody, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
-import {
-	useAppDispatch,
-	useAppSelector,
-} from '../../../../hooks/useAppReduxHooks'
+import { useAppDispatch } from '../../../../hooks/useAppReduxHooks'
 import { FaEdit, FaTrash } from 'react-icons/fa'
 import NavigateButton from '../../../../components/NavigateButton'
 import TableHead from '../../../../components/TableHead'
 import DeleteDialog from '../../../../components/DeleteDialog'
 import PageTitle from '../../../../components/PageTitle'
-import {
-	deleteDocumentType,
-	getDocumentTypesList,
-	loadDocumentTypesList,
-} from '../../../../store/documentType'
+import { deleteDocumentType } from '../../../../store/documentType'
 import { IDocumentType } from '../../../../types/documentType'
+import useDocumentTypesLoader from '../../../../hooks/useDocumentTypesLoader'
 
 interface ISystemProps {}
 
 const Home: React.FC<ISystemProps> = () => {
-	const documentTypes = useAppSelector(getDocumentTypesList())
+	const documentTypes = useDocumentTypesLoader()
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const [deleted, setDeleted] = React.useState<IDocumentType | null>()
 	const dispatch = useAppDispatch()
-
-	React.useEffect(() => {
-		dispatch(loadDocumentTypesList())
-	}, [dispatch])
 
 	const deleteHandler = (id: string) => {
 		dispatch(deleteDocumentType(id))

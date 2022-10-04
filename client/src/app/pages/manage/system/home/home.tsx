@@ -1,21 +1,19 @@
-import { Box, Tbody, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
-import {
-	useAppDispatch,
-	useAppSelector,
-} from '../../../../hooks/useAppReduxHooks'
-import { deleteSystem, getSystemsList } from '../../../../store/system'
+import { Box, Tbody, Td, Tr, useDisclosure } from '@chakra-ui/react'
+import { useAppDispatch } from '../../../../hooks/useAppReduxHooks'
+import { deleteSystem } from '../../../../store/system'
 import { FaEdit, FaTrash } from 'react-icons/fa'
 import NavigateButton from '../../../../components/NavigateButton'
 import TableHead from '../../../../components/TableHead'
 import DeleteDialog from '../../../../components/DeleteDialog'
 import { ISystem } from '../../../../types/system'
 import PageTitle from '../../../../components/PageTitle'
+import useSystemsLoader from '../../../../hooks/useSystemsLoader'
 
 interface ISystemProps {}
 
 const Home: React.FC<ISystemProps> = () => {
-	const systems = useAppSelector(getSystemsList())
+	const systems = useSystemsLoader()
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const [deleted, setDeleted] = React.useState<ISystem | null>()
 	const dispatch = useAppDispatch()

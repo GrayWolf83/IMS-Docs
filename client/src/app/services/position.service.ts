@@ -1,4 +1,4 @@
-import { IPosition } from '../types/position'
+import { INewPosition, IPosition } from '../types/position'
 import httpService from './http.service'
 
 const endpoint = 'position/'
@@ -8,7 +8,7 @@ const positionService = {
 		const { data } = await httpService.get(endpoint)
 		return data
 	},
-	add: async (payload: { name: string; index: number }) => {
+	add: async (payload: INewPosition) => {
 		const { data } = await httpService.post(endpoint, payload)
 
 		return data

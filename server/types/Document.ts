@@ -1,8 +1,8 @@
 export interface IDocument {
 	id: string
 	index: number
+	number: string
 	name: string
-	version: string
 	owner: string
 	system: string
 	type: string

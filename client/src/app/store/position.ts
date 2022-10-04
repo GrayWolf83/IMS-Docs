@@ -1,7 +1,7 @@
 import { setLoadingError } from './error'
 import { AppDispatch, RootState } from './index'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IPosition } from '../types/position'
+import { INewPosition, IPosition } from '../types/position'
 import positionService from '../services/position.service'
 
 type state = {
@@ -18,93 +18,86 @@ const positionSlice = createSlice({
 	name: 'positions',
 	initialState,
 	reducers: {
-		positionsLoaded(state, action: PayloadAction<IPosition[]>) {
+		loaded(state, action: PayloadAction<IPosition[]>) {
 			state.entities = action.payload
 		},
-		positionAdded(state, action: PayloadAction<IPosition>) {
+		added(state, action: PayloadAction<IPosition>) {
 			state.entities = [action.payload, ...state.entities]
 		},
-		positionEdited(state, action: PayloadAction<IPosition>) {
+		edited(state, action: PayloadAction<IPosition>) {
 			state.entities = state.entities.map((item) => {
 				return item.id === action.payload.id ? action.payload : item
 			})
 		},
-		positionDeleted(state, action: PayloadAction<string>) {
+		deleted(state, action: PayloadAction<string>) {
 			state.entities = state.entities.filter(
 				(item) => item.id !== action.payload,
 			)
 		},
-		positionLoadingStart(state) {
+		loadingStart(state) {
 			state.isLoading = true
 		},
-		positionLoadingEnd(state) {
+		loadingEnd(state) {
 			state.isLoading = false
 		},
 	},
 })
 
-const {
-	positionsLoaded,
-	positionAdded,
-	positionEdited,
-	positionDeleted,
-	positionLoadingStart,
-	positionLoadingEnd,
-} = positionSlice.actions
+const { loaded, added, edited, deleted, loadingStart, loadingEnd } =
+	positionSlice.actions
 
 export const loadPositionsList = () => async (dispatch: AppDispatch) => {
-	dispatch(positionLoadingStart())
+	dispatch(loadingStart())
 
 	try {
 		const payload: IPosition[] = await positionService.getList()
-		dispatch(positionsLoaded(payload))
+		dispatch(loaded(payload))
 	} catch (error) {
 		dispatch(setLoadingError(error))
 	} finally {
-		dispatch(positionLoadingEnd())
+		dispatch(loadingEnd())
 	}
 }
 
 export const addPosition =
-	(data: { name: string; index: number }) =>
-	async (dispatch: AppDispatch) => {
-		dispatch(positionLoadingStart())
+	(data: INewPosition) => async (dispatch: AppDispatch) => {
+		dispatch(loadingStart())
 		try {
 			const payload: IPosition = await positionService.add(data)
 
-			dispatch(positionAdded(payload))
+			dispatch(added(payload))
 		} catch (error: any) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(positionLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 
 export const editPosition =
 	(data: IPosition) => async (dispatch: AppDispatch) => {
-		dispatch(positionLoadingStart())
+		dispatch(loadingStart())
 		try {
 			const payload: IPosition = await positionService.edit(data)
 
-			dispatch(positionEdited(payload))
+			dispatch(edited(payload))
 		} catch (error: any) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(positionLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 
 export const deletePosition =
 	(data: string) => async (dispatch: AppDispatch) => {
-		dispatch(positionLoadingStart())
+		dispatch(loadingStart())
 		try {
 			const payload: string = await positionService.delete(data)
 
-			dispatch(positionDeleted(payload))
+			dispatch(deleted(payload))
 		} catch (error: any) {
 			dispatch(setLoadingError(error))
 		} finally {
-			dispatch(positionLoadingEnd())
+			dispatch(loadingEnd())
 		}
 	}
 

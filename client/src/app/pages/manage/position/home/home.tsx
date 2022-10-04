@@ -1,25 +1,19 @@
 import { Box, Tbody, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
-import {
-	useAppDispatch,
-	useAppSelector,
-} from '../../../../hooks/useAppReduxHooks'
+import { useAppDispatch } from '../../../../hooks/useAppReduxHooks'
 import { FaEdit, FaTrash } from 'react-icons/fa'
 import NavigateButton from '../../../../components/NavigateButton'
 import TableHead from '../../../../components/TableHead'
 import DeleteDialog from '../../../../components/DeleteDialog'
 import PageTitle from '../../../../components/PageTitle'
-import {
-	deletePosition,
-	getPositionsList,
-	loadPositionsList,
-} from '../../../../store/position'
+import { deletePosition } from '../../../../store/position'
 import { IPosition } from '../../../../types/position'
+import usePositionsLoader from '../../../../hooks/usePositionsLoader'
 
 interface IPositionProps {}
 
 const Home: React.FC<IPositionProps> = () => {
-	const positions = useAppSelector(getPositionsList())
+	const positions = usePositionsLoader()
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const [deleted, setDeleted] = React.useState<IPosition | null>()
 	const dispatch = useAppDispatch()
@@ -27,10 +21,6 @@ const Home: React.FC<IPositionProps> = () => {
 	const deleteHandler = (id: string) => {
 		dispatch(deletePosition(id))
 	}
-
-	React.useEffect(() => {
-		dispatch(loadPositionsList())
-	}, [dispatch])
 
 	return (
 		<Box data-testid='ManagePositionHome' mt={3}>
