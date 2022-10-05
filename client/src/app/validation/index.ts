@@ -2,20 +2,10 @@ import * as yup from 'yup'
 
 export const DocumentSchema = yup.object().shape({
 	familiarity: yup
-		.array()
-		.required({
-			name: 'familiarity',
-			text: 'Поле "Ознакомление" обязательно для заполнения',
-		})
-		.min(1, {
-			name: 'familiarity',
-			text: 'Поле "Ознакомление" обязательно для заполнения',
-		}),
-	type: yup
 		.string()
 		.required({
-			name: 'type',
-			text: 'Поле "Тип" обязательно для заполнения',
+			name: 'familiarity',
+			text: 'Поле "Ознакомление" обязательно для заполнения',
 		})
 		.trim(),
 	system: yup

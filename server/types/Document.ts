@@ -5,5 +5,4 @@ export interface IDocument {
 	name: string
 	owner: string
 	system: string
-	type: string
 }

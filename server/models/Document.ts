@@ -36,13 +36,6 @@ const Document = DB.define('Document', {
 			key: 'id',
 		},
 	},
-	type: {
-		type: DataTypes.UUID,
-		references: {
-			model: DocumentType,
-			key: 'id',
-		},
-	},
 })
 
 Document.belongsTo(Department, {
@@ -51,10 +44,6 @@ Document.belongsTo(Department, {
 
 Document.belongsTo(System, {
 	foreignKey: 'system',
-})
-
-Document.belongsTo(DocumentType, {
-	foreignKey: 'type',
 })
 
 export default Document

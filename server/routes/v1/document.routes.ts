@@ -21,8 +21,7 @@ router.get('/:systemId', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	try {
-		const { index, number, name, owner, system, type, familiarity } =
-			req.body
+		const { index, number, name, owner, system, familiarity } = req.body
 
 		const isWithThisNumber: IDocument = await Document.findOne({
 			where: { number },
@@ -41,7 +40,6 @@ router.post('/', async (req, res) => {
 			name,
 			owner,
 			system,
-			type,
 		})
 
 		const famils = familiarity.map((item) => ({

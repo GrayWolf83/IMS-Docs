@@ -4,6 +4,7 @@ import useDepartmentsLoader from '../../../hooks/useDepartmentsLoader'
 import useSystemsLoader from '../../../hooks/useSystemsLoader'
 import { DocumentSchema } from '../../../validation'
 import FormComponent from '../../form/FormComponent'
+import MultiSelectField from '../../form/MultiSelectField'
 import SelectField from '../../form/SelectField'
 import TextField from '../../form/TextField'
 
@@ -34,6 +35,11 @@ const DocumentForm: React.FC<IDocumentForm> = ({ onSubmit, initialData }) => {
 					label='Наименование'
 					name='name'
 					placeholder='Наименование'
+				/>
+				<MultiSelectField
+					label='Ознакомление'
+					name='familiarity'
+					items={departments}
 				/>
 				<SelectField
 					label='Владелец'

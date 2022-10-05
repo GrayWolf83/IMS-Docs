@@ -12,5 +12,4 @@ export interface IDoc {
 	name: string
 	owner: string
 	system: string
-	type: string
 }
